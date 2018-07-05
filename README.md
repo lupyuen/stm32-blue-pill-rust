@@ -5,19 +5,21 @@ Rust for STM32 Blue Pill
 
 ```
 sudo apt install pkg-config
+sudo apt install cmake
 ```
 
 ## From https://docs.rs/cortex-m-quickstart/0.2.7/cortex_m_quickstart/
 
 ```
-Nightly Rust toolchain newer than nightly-2018-04-08: 
+Nightly Rust toolchain newer than nightly-2018-04-08:
 rustup default nightly
 
 Cargo clone subcommand: 
 cargo install cargo-clone
 
 GDB: (on Ubuntu)
-sudo apt install gdb-arm-none-eabi
+## Fails: sudo apt install gdb-arm-none-eabi
+sudo apt install gdb-multiarch
 
 OpenOCD: (on Ubuntu)
 sudo apt install OpenOCD
@@ -128,6 +130,7 @@ Flash the program
 
 $ # Launch OpenOCD on a terminal
 $ openocd -f (..)
+
 $ # Start a debug session in another terminal
 $ arm-none-eabi-gdb target/thumbv7em-none-eabihf/release/demo
 
