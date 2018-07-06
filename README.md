@@ -31,15 +31,17 @@ sudo apt install binutils-arm-none-eabi
 cargo install cargo-edit
 ```
 
-Use thumbv7m-none-eabi for ARM Cortex-M3
-
-Install the rust-std component for your target, if you haven't done so already
+Install the rust-std component for your target. Use thumbv7m-none-eabi for ARM Cortex-M3.
 
 ```bash
 rustup target add thumbv7m-none-eabi
+```
 
-Clone this crate
+## How this crate was created
 
+Clone the quickstart crate
+
+```bash
 cargo clone cortex-m-quickstart && cd $_
 
 Change the crate name, author and version
@@ -80,7 +82,8 @@ rm -r src/* && cp examples/hello.rs src/main.rs
 
 Build the application
 
-cargo build --release
+cargo check --target thumbv7m-none-eabi
+cargo build --release --target thumbv7m-none-eabi
 # sanity check
 arm-none-eabi-readelf -A target/thumbv7m-none-eabi/release/demo
 
