@@ -82,7 +82,8 @@ rm -r src/* && cp examples/hello.rs src/main.rs
 
 Build the application
 
-cargo check --target thumbv7m-none-eabi
+cargo clean
+cargo check --release --target thumbv7m-none-eabi
 cargo build --release --target thumbv7m-none-eabi
 # sanity check
 arm-none-eabi-readelf -A target/thumbv7m-none-eabi/release/demo
