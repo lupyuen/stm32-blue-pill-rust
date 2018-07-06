@@ -38,6 +38,10 @@ ARM linker:
 sudo apt install binutils-arm-none-eabi
 ```
 
+For Windows:
+Browse to `C:\Program Files (x86)\GNU Tools Arm Embedded\7 2018-q2-update\bin`.
+Copy `arm-none-eabi-ar.exe` to `ar.exe`
+
 Install the rust-std component thumbv7m-none-eabi for ARM Cortex-M3.
 
 ```bash
