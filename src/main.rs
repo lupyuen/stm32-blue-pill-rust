@@ -1,7 +1,7 @@
-//! Prints "Hello, world!" on the OpenOCD console using semihosting
-//!
-//! ---
+//! Prints "Hello, world" on the OpenOCD console
 
+#![deny(unsafe_code)]
+#![deny(warnings)]
 #![no_main]
 #![no_std]
 
@@ -9,6 +9,7 @@
 extern crate cortex_m_rt as rt;
 extern crate cortex_m_semihosting as sh;
 extern crate panic_semihosting;
+extern crate stm32f103xx_hal;
 
 use core::fmt::Write;
 
@@ -18,8 +19,9 @@ use sh::hio;
 entry!(main);
 
 fn main() -> ! {
-    let mut stdout = hio::hstdout().unwrap();
-    writeln!(stdout, "Hello, world!").unwrap();
+    let mut hstdout = hio::hstdout().unwrap();
+
+    writeln!(hstdout, "Hello, world!").unwrap();
 
     loop {}
 }
@@ -27,7 +29,7 @@ fn main() -> ! {
 exception!(HardFault, hard_fault);
 
 fn hard_fault(ef: &ExceptionFrame) -> ! {
-    panic!("HardFault at {:#?}", ef);
+    panic!("{:#?}", ef);
 }
 
 exception!(*, default_handler);
