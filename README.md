@@ -6,6 +6,10 @@ Rust for STM32 Blue Pill. Based on
 
 1. https://docs.rs/cortex-m-quickstart/0.2.7/cortex_m_quickstart/
 
+1. http://nercury.github.io/rust/embedded/experiments/2018/04/29/rust-embedded-01-discovery-vl-flipping-bits.html
+
+## Install Prerequisites
+
 ```bash
 sudo apt install pkg-config cmake libssl-dev zlib1g-dev
 ```
@@ -71,12 +75,7 @@ Depend on a HAL implementation.
 cargo add https://github.com/japaric/stm32f103xx
 cargo add https://github.com/japaric/stm32f103xx-hal
 
-Edit Cargo.toml:
-<<
-stm32f103xx-hal = { git = "https://github.com/japaric/stm32f103xx-hal", features = ["rt"] }
->>
-
-Write the application or start from one of the examples
+Copy the application from one of the examples
 
 rm -r src/* && cp examples/hello.rs src/main.rs
 
