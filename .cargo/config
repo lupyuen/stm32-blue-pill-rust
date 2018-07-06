@@ -26,4 +26,5 @@ rustflags = [
 ]
 
 [build]
+# By default, build for ARM Cortex-M3 CPU.
 target = "thumbv7m-none-eabi"

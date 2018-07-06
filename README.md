@@ -14,6 +14,10 @@ Rust for STM32 Blue Pill with Visual Studio Code. Based on
 sudo apt install pkg-config cmake libssl-dev zlib1g-dev
 ```
 
+Install `rustup` (the Rust toolchain installer) from https://rustup.rs/
+
+Select the default option.
+
 Select nightly Rust toolchain newer than nightly-2018-04-08:
 
 ```bash
