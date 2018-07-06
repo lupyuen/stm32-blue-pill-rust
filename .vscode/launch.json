@@ -1,0 +1,30 @@
+{
+    // Debug settings: https://github.com/WebFreak001/code-debug
+    "version": "0.2.0",
+    "configurations": [        
+        {
+            //  Debug the STM32 Blue Pill flash code.
+            "name": "Debug (STM32 Blue Pill)",
+            "type": "gdb",
+            "request": "launch",
+            "cwd": "${workspaceRoot}",
+
+            //  This is redundant. The target is specified in rtl_gdb_debug.txt.
+            "target": "./target/thumbv7m-none-eabi/release/stm32-blue-pill-rust",
+
+            //  Start arm-none-eabi-gdb with the rtl_gdb_debug.txt script.  Connects to OpenOCD to send commands to SWD USB dongle.
+            "gdbpath": "arm-none-eabi-gdb",
+            "debugger_args": [
+                // "-x",
+                // "component/soc/realtek/8195a/misc/gcc_utility/rtl_gdb_debug.txt"
+            ],
+
+            //  For debugger display, don't interpret values returned by gdb.
+            "valuesFormatting": "disabled",
+
+            //  Enable debug output.
+            "printCalls": true,
+            "showDevDebugOutput": true,
+        }
+    ]
+}

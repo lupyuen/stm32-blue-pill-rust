@@ -2,13 +2,14 @@
 	"folders": [
 		{
 			"path": "."
-		},
-		{
-			"path": "/home/luppy/cortex-m-quickstart"
-		},
-		{
-			"path": "/home/luppy/stm32f103xx-hal"
 		}
 	],
-	"settings": {}
+	"settings": {
+		"terminal.integrated.shell.windows": "C:\\WINDOWS\\System32\\bash.exe",
+		"rust.mode": "rls",
+		"rust.rls": {
+			"useRustfmt": false
+		},
+		"git.autofetch": true,
+	}
 }

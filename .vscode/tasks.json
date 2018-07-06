@@ -4,7 +4,7 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "Build",
+            "label": "Build (STM32 Blue Pill)",
             "type": "shell",
             "command": "export PATH=\"$HOME/.cargo/bin:$PATH\"; cargo build -v --release",
             "group": {
@@ -13,12 +13,12 @@
             }
         },
         {
-            "label": "Clean",
+            "label": "Clean Build (STM32 Blue Pill)",
             "type": "shell",
             "command": "export PATH=\"$HOME/.cargo/bin:$PATH\"; cargo clean -v"
         },
         {
-            "label": "Check",
+            "label": "Check Build (STM32 Blue Pill)",
             "type": "shell",
             "command": "export PATH=\"$HOME/.cargo/bin:$PATH\"; cargo check -v --release",
             "problemMatcher": []

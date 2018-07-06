@@ -6,6 +6,9 @@ runner = 'arm-none-eabi-gdb'
 rustflags = [
   "-C", "link-arg=-nostartfiles",
 
+  # Select ar linker:
+  "-C", "link-arg=-Wl,-Tlink.x",
+
   # Select GNU linker:
   # "-C", "linker=arm-none-eabi-ld",
   # "-C", "ar=arm-none-eabi-ar",
@@ -13,10 +16,7 @@ rustflags = [
   # "-Z", "linker-flavor=ld",
   # "-Z", "thinlto=no",
 
-  # Select ar linker:
-  "-C", "link-arg=-Wl,-Tlink.x",
-
-  # uncomment to use rustc LLD to link programs (a)
+  # Select rustc LLD linker (a)
   # "-C", "link-arg=-Tlink.x",
   # "-C", "linker=lld",
   # "-Z", "linker-flavor=ld.lld",
