@@ -14,28 +14,43 @@ Rust for STM32 Blue Pill. Based on
 sudo apt install pkg-config cmake libssl-dev zlib1g-dev
 ```
 
-Nightly Rust toolchain newer than nightly-2018-04-08:
+Select nightly Rust toolchain newer than nightly-2018-04-08:
+
 ```bash
 rustup default nightly
+```
 
-Cargo clone subcommand: 
+Cargo clone subcommand:
+
+```bash
 cargo install cargo-clone
+```
 
-GDB: (on Ubuntu)
-## Obsolete: sudo apt install gdb-arm-none-eabi
+GDB: (gdb-arm-none-eabi is obsolete)
+
+```bash
 sudo apt install gdb-multiarch
+```
 
-OpenOCD: (on Ubuntu)
+OpenOCD:
+
+```bash
 sudo apt install openocd
+```
 
-[Optional] ARM linker: (on Ubuntu)
+ARM linker:
+
+```bash
 sudo apt install binutils-arm-none-eabi
+```
 
-[Optional] Cargo add subcommand: 
+Cargo add subcommand:
+
+```bash
 cargo install cargo-edit
 ```
 
-Install the rust-std component for your target. Use thumbv7m-none-eabi for ARM Cortex-M3.
+Install the rust-std component thumbv7m-none-eabi for ARM Cortex-M3.
 
 ```bash
 rustup target add thumbv7m-none-eabi
@@ -47,68 +62,77 @@ Clone the quickstart crate
 
 ```bash
 cargo clone cortex-m-quickstart && cd $_
+```
 
-Change the crate name, author and version
+Change the crate name, author and version in Cargo.toml:
 
-edit Cargo.toml
+```toml
 <<
 [package]
 authors = ["Jorge Aparicio <jorge@japaric.io>"]
 name = "demo"
 version = "0.1.0"
 >>
+```
 
 Specify the memory layout of the target device
 NOTE board support crates sometimes provide this file for you (check the crate documentation). If you are using one that does then remove both the memory.x and build.rs files.
 
+```bash
 rm memory.x build.rs
+```
 
 Set a default build target
 
+```bash
 cat >>.cargo/config <<'EOF'
 [build]
 target = "thumbv7m-none-eabi"
 EOF
+```
 
 Depend on a HAL implementation.
 
+```bash
 cargo add https://github.com/japaric/stm32f103xx
 cargo add https://github.com/japaric/stm32f103xx-hal
+```
 
 Copy the application from one of the examples
 
+```bash
 rm -r src/* && cp examples/hello.rs src/main.rs
+```
 
 Build the application
 
+```bash
 cargo clean
 cargo check --release --target thumbv7m-none-eabi
 cargo build --release --target thumbv7m-none-eabi
 # sanity check
-arm-none-eabi-readelf -A target/thumbv7m-none-eabi/release/demo
-
+arm-none-eabi-readelf -A target/thumbv7m-none-eabi/release/stm32-blue-pill-rust
+<<
 Attribute Section: aeabi
 File Attributes
-  Tag_conformance: "2.09"
-  Tag_CPU_arch: v7E-M
+  Tag_CPU_name: "ARM v7"
+  Tag_CPU_arch: v7
   Tag_CPU_arch_profile: Microcontroller
   Tag_THUMB_ISA_use: Thumb-2
-  Tag_FP_arch: VFPv4-D16
   Tag_ABI_PCS_GOT_use: direct
   Tag_ABI_FP_denormal: Needed
   Tag_ABI_FP_exceptions: Needed
   Tag_ABI_FP_number_model: IEEE 754
   Tag_ABI_align_needed: 8-byte
-  Tag_ABI_align_preserved: 8-byte, except leaf SP
-  Tag_ABI_HardFP_use: SP only
-  Tag_ABI_VFP_args: VFP registers
   Tag_ABI_optimization_goals: Aggressive Speed
   Tag_CPU_unaligned_access: v6
-  Tag_FP_HP_extension: Allowed
   Tag_ABI_FP_16bit_format: IEEE 754
+>>
+```
 
 NOTE By default Cargo will use the LLD linker shipped with the Rust toolchain. If you encounter any linking error try to switch to the GNU linker by modifying the .cargo/config file as shown below:
 
+```bash
  runner = 'arm-none-eabi-gdb'
  rustflags = [
    "-C", "link-arg=-Tlink.x",
@@ -122,22 +146,26 @@ NOTE By default Cargo will use the LLD linker shipped with the Rust toolchain. I
 +  "-Z", "linker-flavor=ld",
    "-Z", "thinlto=no",
  ]
+```
 
 Flash the program
 
-# Launch OpenOCD on a terminal
-openocd -f (..)
+```bash
+# Launch OpenOCD on a terminal. Scripts are located at /usr/share/openocd/scripts
+openocd -f interface/stlink.cfg -f target/stm32f1x.cfg
 
 # Start a debug session in another terminal
 arm-none-eabi-gdb target/thumbv7em-none-eabihf/release/demo
+```
 
 Alternatively, you can use cargo run to build, flash and debug the program in a single step.
 
-cargo run --example hello
+```bash
+cargo run --example hello --release --target thumbv7m-none-eabi
 
 ```
 
-# License
+## License
 
 Licensed under either of
 
