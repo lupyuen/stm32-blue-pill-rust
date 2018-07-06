@@ -1,6 +1,6 @@
 # stm32-blue-pill-rust
 
-Rust for STM32 Blue Pill. Based on
+Rust for STM32 Blue Pill with Visual Studio Code. Based on
 
 1. https://japaric.github.io/stm32f103xx-hal/stm32f103xx_hal/
 
@@ -50,10 +50,17 @@ Build the application
 cargo clean
 cargo check --release
 cargo build --release
-# sanity check
-arm-none-eabi-readelf -h target/thumbv7m-none-eabi/release/stm32-blue-pill-rust
+```
 
-<<
+Sanity check for the built application
+
+```bash
+arm-none-eabi-readelf -h target/thumbv7m-none-eabi/release/stm32-blue-pill-rust
+```
+
+Should show:
+
+```text
 ELF Header:
   Magic:   7f 45 4c 46 01 01 01 00 00 00 00 00 00 00 00 00
   Class:                             ELF32
@@ -74,14 +81,13 @@ ELF Header:
   Size of section headers:           40 (bytes)
   Number of section headers:         19
   Section header string table index: 16
->>
 ```
 
 Flash the program
 
 ```bash
 # Launch OpenOCD on a terminal. Scripts are located at /usr/share/openocd/scripts
-openocd -f interface/stlink.cfg -f target/stm32f1x.cfg
+openocd -f interface/stlink-v2.cfg -f target/stm32f1x.cfg
 
 # Start a debug session in another terminal
 arm-none-eabi-gdb target/thumbv7em-none-eabihf/release/demo
@@ -126,16 +132,14 @@ cargo clone cortex-m-quickstart && cd $_
 Change the crate name, author and version in Cargo.toml:
 
 ```toml
-<<
 [package]
 authors = ["Jorge Aparicio <jorge@japaric.io>"]
 name = "demo"
 version = "0.1.0"
->>
 ```
 
-Specify the memory layout of the target device
-NOTE board support crates sometimes provide this file for you (check the crate documentation). If you are using one that does then remove both the memory.x and build.rs files.
+Specify the memory layout of the target device.
+Since board support crate for stm32f103xx provides this file, we remove both the memory.x and build.rs files.
 
 ```bash
 rm memory.x build.rs
@@ -162,26 +166,6 @@ Copy the application from one of the examples
 
 ```bash
 rm -r src/* && cp examples/hello.rs src/main.rs
-```
-
-For Windows:
-
-NOTE By default Cargo will use the LLD linker shipped with the Rust toolchain. If you encounter any linking error try to switch to the GNU linker by modifying the .cargo/config file as shown below:
-
-```bash
- runner = 'arm-none-eabi-gdb'
- rustflags = [
-   "-C", "link-arg=-Tlink.x",
--  "-C", "linker=lld",
--  "-Z", "linker-flavor=ld.lld",
--  # "-C", "linker=arm-none-eabi-ld",
--  # "-Z", "linker-flavor=ld",
-+  # "-C", "linker=lld",
-+  # "-Z", "linker-flavor=ld.lld",
-+  "-C", "linker=arm-none-eabi-ld",
-+  "-Z", "linker-flavor=ld",
-   "-Z", "thinlto=no",
- ]
 ```
 
 ## License

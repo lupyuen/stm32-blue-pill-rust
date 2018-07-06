@@ -4,7 +4,14 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "Build (STM32 Blue Pill)",
+            "label": "Start OpenOCD (STM32 Blue Pill Rust)",
+            "type": "process",
+            "command": "c:\\openocd\\bin\\openocd",
+            // "command": "openocd -f interface/stlink-v2.cfg -f target/stm32f1x.cfg",
+            "problemMatcher": []
+        },
+        {
+            "label": "Build (STM32 Blue Pill Rust)",
             "type": "shell",
             "command": "export PATH=\"$HOME/.cargo/bin:$PATH\"; cargo build -v --release",
             "group": {
@@ -13,12 +20,13 @@
             }
         },
         {
-            "label": "Clean Build (STM32 Blue Pill)",
+            "label": "Remove Build (STM32 Blue Pill Rust)",
             "type": "shell",
-            "command": "export PATH=\"$HOME/.cargo/bin:$PATH\"; cargo clean -v"
+            "command": "export PATH=\"$HOME/.cargo/bin:$PATH\"; cargo clean -v",
+            "problemMatcher": []
         },
         {
-            "label": "Check Build (STM32 Blue Pill)",
+            "label": "Check Build (STM32 Blue Pill Rust)",
             "type": "shell",
             "command": "export PATH=\"$HOME/.cargo/bin:$PATH\"; cargo check -v --release",
             "problemMatcher": []

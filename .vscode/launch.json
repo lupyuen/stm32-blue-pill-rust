@@ -4,7 +4,7 @@
     "configurations": [        
         {
             //  Debug the STM32 Blue Pill flash code.
-            "name": "Debug (STM32 Blue Pill)",
+            "name": "Debug (STM32 Blue Pill Rust)",
             "type": "gdb",
             "request": "launch",
             "cwd": "${workspaceRoot}",
