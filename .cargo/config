@@ -1,20 +1,20 @@
 [target.thumbv7m-none-eabi]
 runner = 'arm-none-eabi-gdb'
-# Updated to select GNU linker:
+# Select GNU linker:
 # linker = "arm-none-eabi-ld"
 # ar = "arm-none-eabi-ar"
 rustflags = [
   "-C", "link-arg=-nostartfiles",
 
-  # Updated flags to select GNU linker:
-  "-C", "linker=arm-none-eabi-ld",
-  "-C", "ar=arm-none-eabi-ar",
-  "-C", "link-arg=-Tlink.x",
-  "-Z", "linker-flavor=ld",
-  "-Z", "thinlto=no",
+  # Select GNU linker:
+  # "-C", "linker=arm-none-eabi-ld",
+  # "-C", "ar=arm-none-eabi-ar",
+  # "-C", "link-arg=-Tlink.x",
+  # "-Z", "linker-flavor=ld",
+  # "-Z", "thinlto=no",
 
-  # Original flags for ar linker:
-  # "-C", "link-arg=-Wl,-Tlink.x",
+  # Select ar linker:
+  "-C", "link-arg=-Wl,-Tlink.x",
 
   # uncomment to use rustc LLD to link programs (a)
   # "-C", "link-arg=-Tlink.x",

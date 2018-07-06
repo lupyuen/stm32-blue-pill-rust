@@ -20,7 +20,8 @@
         {
             "label": "Check",
             "type": "shell",
-            "command": "export PATH=\"$HOME/.cargo/bin:$PATH\"; cargo check -v --release"
+            "command": "export PATH=\"$HOME/.cargo/bin:$PATH\"; cargo check -v --release",
+            "problemMatcher": []
         }
     ]
 }

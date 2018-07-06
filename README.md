@@ -54,20 +54,26 @@ cargo build --release
 arm-none-eabi-readelf -h target/thumbv7m-none-eabi/release/stm32-blue-pill-rust
 
 <<
-Attribute Section: aeabi
-File Attributes
-  Tag_CPU_name: "ARM v7"
-  Tag_CPU_arch: v7
-  Tag_CPU_arch_profile: Microcontroller
-  Tag_THUMB_ISA_use: Thumb-2
-  Tag_ABI_PCS_GOT_use: direct
-  Tag_ABI_FP_denormal: Needed
-  Tag_ABI_FP_exceptions: Needed
-  Tag_ABI_FP_number_model: IEEE 754
-  Tag_ABI_align_needed: 8-byte
-  Tag_ABI_optimization_goals: Aggressive Speed
-  Tag_CPU_unaligned_access: v6
-  Tag_ABI_FP_16bit_format: IEEE 754
+ELF Header:
+  Magic:   7f 45 4c 46 01 01 01 00 00 00 00 00 00 00 00 00
+  Class:                             ELF32
+  Data:                              2's complement, little endian
+  Version:                           1 (current)
+  OS/ABI:                            UNIX - System V
+  ABI Version:                       0
+  Type:                              EXEC (Executable file)
+  Machine:                           ARM
+  Version:                           0x1
+  Entry point address:               0x80009d5
+  Start of program headers:          52 (bytes into file)
+  Start of section headers:          152956 (bytes into file)
+  Flags:                             0x5000202, Version5 EABI, soft-float ABI, <unknown>
+  Size of this header:               52 (bytes)
+  Size of program headers:           32 (bytes)
+  Number of program headers:         2
+  Size of section headers:           40 (bytes)
+  Number of section headers:         19
+  Section header string table index: 16
 >>
 ```
 
