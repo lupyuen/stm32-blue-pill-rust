@@ -13,6 +13,13 @@ rustflags = [
 [target.thumbv7m-none-eabi]
 runner = 'arm-none-eabi-gdb'
 rustflags = [
+  # Updated flags to select GNU linker:
+  # "-C", "link-arg=-Tlink.x",
+  # "-C", "linker=arm-none-eabi-ld",
+  # "-Z", "linker-flavor=ld",
+  # "-Z", "thinlto=no",
+
+  # Original flags to select ar linker:
   "-C", "link-arg=-Wl,-Tlink.x",
   "-C", "link-arg=-nostartfiles",
 

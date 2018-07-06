@@ -89,6 +89,8 @@ cargo run --example hello --release --target thumbv7m-none-eabi
 
 ## References
 
+Windows Setup: https://japaric.github.io/discovery/03-setup/windows.html
+
 STM32F103C8 Website: https://www.st.com/en/microcontrollers/stm32f103c8.html
 
 STM32F103C8 Datasheet: https://www.st.com/resource/en/datasheet/stm32f103c8.pdf
@@ -153,6 +155,8 @@ Copy the application from one of the examples
 ```bash
 rm -r src/* && cp examples/hello.rs src/main.rs
 ```
+
+For Windows:
 
 NOTE By default Cargo will use the LLD linker shipped with the Rust toolchain. If you encounter any linking error try to switch to the GNU linker by modifying the .cargo/config file as shown below:
 
