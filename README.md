@@ -48,10 +48,11 @@ Build the application
 
 ```bash
 cargo clean
-cargo check --release --target thumbv7m-none-eabi
-cargo build --release --target thumbv7m-none-eabi
+cargo check --release
+cargo build --release
 # sanity check
-arm-none-eabi-readelf -A target/thumbv7m-none-eabi/release/stm32-blue-pill-rust
+arm-none-eabi-readelf -h target/thumbv7m-none-eabi/release/stm32-blue-pill-rust
+
 <<
 Attribute Section: aeabi
 File Attributes
@@ -138,6 +139,7 @@ Set a default build target
 
 ```bash
 cat >>.cargo/config <<'EOF'
+
 [build]
 target = "thumbv7m-none-eabi"
 EOF

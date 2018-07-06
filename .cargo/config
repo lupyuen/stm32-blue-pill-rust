@@ -1,58 +1,29 @@
-[target.thumbv6m-none-eabi]
-runner = 'arm-none-eabi-gdb'
-rustflags = [
-  "-C", "link-arg=-Wl,-Tlink.x",
-  "-C", "link-arg=-nostartfiles",
-
-  # uncomment to use rustc LLD to link programs (a)
-  # "-C", "link-arg=-Tlink.x",
-  # "-C", "linker=lld",
-  # "-Z", "linker-flavor=ld.lld",
-]
-
 [target.thumbv7m-none-eabi]
 runner = 'arm-none-eabi-gdb'
+# Updated to select GNU linker:
+# linker = "arm-none-eabi-ld"
+# ar = "arm-none-eabi-ar"
 rustflags = [
+  "-C", "link-arg=-nostartfiles",
+
   # Updated flags to select GNU linker:
-  # "-C", "link-arg=-Tlink.x",
-  # "-C", "linker=arm-none-eabi-ld",
-  # "-Z", "linker-flavor=ld",
-  # "-Z", "thinlto=no",
+  "-C", "linker=arm-none-eabi-ld",
+  "-C", "ar=arm-none-eabi-ar",
+  "-C", "link-arg=-Tlink.x",
+  "-Z", "linker-flavor=ld",
+  "-Z", "thinlto=no",
 
-  # Original flags to select ar linker:
-  "-C", "link-arg=-Wl,-Tlink.x",
-  "-C", "link-arg=-nostartfiles",
-
-  # uncomment to use rustc LLD to link programs (a)
-  # "-C", "link-arg=-Tlink.x",
-  # "-C", "linker=lld",
-  # "-Z", "linker-flavor=ld.lld",
-]
-
-[target.thumbv7em-none-eabi]
-runner = 'arm-none-eabi-gdb'
-rustflags = [
-  "-C", "link-arg=-Wl,-Tlink.x",
-  "-C", "link-arg=-nostartfiles",
+  # Original flags for ar linker:
+  # "-C", "link-arg=-Wl,-Tlink.x",
 
   # uncomment to use rustc LLD to link programs (a)
   # "-C", "link-arg=-Tlink.x",
   # "-C", "linker=lld",
   # "-Z", "linker-flavor=ld.lld",
+
+  # (a) you also need to comment out the other two `link-arg` lines. But note that as of v0.6.0 LLD
+  # has a bug where it mislinks FFI calls and they up crashing the program at runtime[build]
 ]
 
-[target.thumbv7em-none-eabihf]
-runner = 'arm-none-eabi-gdb'
-rustflags = [
-  "-C", "link-arg=-Wl,-Tlink.x",
-  "-C", "link-arg=-nostartfiles",
-
-  # uncomment to use rustc LLD to link programs (a)
-  # "-C", "link-arg=-Tlink.x",
-  # "-C", "linker=lld",
-  # "-Z", "linker-flavor=ld.lld",
-]
-
-# (a) you also need to comment out the other two `link-arg` lines. But note that as of v0.6.0 LLD
-# has a bug where it mislinks FFI calls and they up crashing the program at runtime[build]
+[build]
 target = "thumbv7m-none-eabi"
