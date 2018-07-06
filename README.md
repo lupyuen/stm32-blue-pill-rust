@@ -20,12 +20,6 @@ Select nightly Rust toolchain newer than nightly-2018-04-08:
 rustup default nightly
 ```
 
-Cargo clone subcommand:
-
-```bash
-cargo install cargo-clone
-```
-
 GDB: (gdb-arm-none-eabi is obsolete)
 
 ```bash
@@ -44,19 +38,75 @@ ARM linker:
 sudo apt install binutils-arm-none-eabi
 ```
 
-Cargo add subcommand:
-
-```bash
-cargo install cargo-edit
-```
-
 Install the rust-std component thumbv7m-none-eabi for ARM Cortex-M3.
 
 ```bash
 rustup target add thumbv7m-none-eabi
 ```
 
+Build the application
+
+```bash
+cargo clean
+cargo check --release --target thumbv7m-none-eabi
+cargo build --release --target thumbv7m-none-eabi
+# sanity check
+arm-none-eabi-readelf -A target/thumbv7m-none-eabi/release/stm32-blue-pill-rust
+<<
+Attribute Section: aeabi
+File Attributes
+  Tag_CPU_name: "ARM v7"
+  Tag_CPU_arch: v7
+  Tag_CPU_arch_profile: Microcontroller
+  Tag_THUMB_ISA_use: Thumb-2
+  Tag_ABI_PCS_GOT_use: direct
+  Tag_ABI_FP_denormal: Needed
+  Tag_ABI_FP_exceptions: Needed
+  Tag_ABI_FP_number_model: IEEE 754
+  Tag_ABI_align_needed: 8-byte
+  Tag_ABI_optimization_goals: Aggressive Speed
+  Tag_CPU_unaligned_access: v6
+  Tag_ABI_FP_16bit_format: IEEE 754
+>>
+```
+
+Flash the program
+
+```bash
+# Launch OpenOCD on a terminal. Scripts are located at /usr/share/openocd/scripts
+openocd -f interface/stlink.cfg -f target/stm32f1x.cfg
+
+# Start a debug session in another terminal
+arm-none-eabi-gdb target/thumbv7em-none-eabihf/release/demo
+```
+
+Alternatively, you can use cargo run to build, flash and debug the program in a single step.
+
+```bash
+cargo run --example hello --release --target thumbv7m-none-eabi
+
+```
+
+## References
+
+STM32F103C8 Website: https://www.st.com/en/microcontrollers/stm32f103c8.html
+
+STM32F103C8 Datasheet: https://www.st.com/resource/en/datasheet/stm32f103c8.pdf
+
+STM32F103C8 Reference Manual: https://www.st.com/content/ccc/resource/technical/document/reference_manual/59/b9/ba/7f/11/af/43/d5/CD00171190.pdf/files/CD00171190.pdf/jcr:content/translations/en.CD00171190.pdf
+
+STM32F103C8 Flash Programming: https://www.st.com/content/ccc/resource/technical/document/programming_manual/10/98/e8/d4/2b/51/4b/f5/CD00283419.pdf/files/CD00283419.pdf/jcr:content/translations/en.CD00283419.pdf
+
+STM32F103C8 ARM Cortex M3 Programming: https://www.st.com/content/ccc/resource/technical/document/programming_manual/5b/ca/8d/83/56/7f/40/08/CD00228163.pdf/files/CD00228163.pdf/jcr:content/translations/en.CD00228163.pdf
+
 ## How this crate was created
+
+Install Cargo `clone` and `add` subcommands:
+
+```bash
+cargo install cargo-clone
+cargo install cargo-edit
+```
 
 Clone the quickstart crate
 
@@ -104,32 +154,6 @@ Copy the application from one of the examples
 rm -r src/* && cp examples/hello.rs src/main.rs
 ```
 
-Build the application
-
-```bash
-cargo clean
-cargo check --release --target thumbv7m-none-eabi
-cargo build --release --target thumbv7m-none-eabi
-# sanity check
-arm-none-eabi-readelf -A target/thumbv7m-none-eabi/release/stm32-blue-pill-rust
-<<
-Attribute Section: aeabi
-File Attributes
-  Tag_CPU_name: "ARM v7"
-  Tag_CPU_arch: v7
-  Tag_CPU_arch_profile: Microcontroller
-  Tag_THUMB_ISA_use: Thumb-2
-  Tag_ABI_PCS_GOT_use: direct
-  Tag_ABI_FP_denormal: Needed
-  Tag_ABI_FP_exceptions: Needed
-  Tag_ABI_FP_number_model: IEEE 754
-  Tag_ABI_align_needed: 8-byte
-  Tag_ABI_optimization_goals: Aggressive Speed
-  Tag_CPU_unaligned_access: v6
-  Tag_ABI_FP_16bit_format: IEEE 754
->>
-```
-
 NOTE By default Cargo will use the LLD linker shipped with the Rust toolchain. If you encounter any linking error try to switch to the GNU linker by modifying the .cargo/config file as shown below:
 
 ```bash
@@ -146,23 +170,6 @@ NOTE By default Cargo will use the LLD linker shipped with the Rust toolchain. I
 +  "-Z", "linker-flavor=ld",
    "-Z", "thinlto=no",
  ]
-```
-
-Flash the program
-
-```bash
-# Launch OpenOCD on a terminal. Scripts are located at /usr/share/openocd/scripts
-openocd -f interface/stlink.cfg -f target/stm32f1x.cfg
-
-# Start a debug session in another terminal
-arm-none-eabi-gdb target/thumbv7em-none-eabihf/release/demo
-```
-
-Alternatively, you can use cargo run to build, flash and debug the program in a single step.
-
-```bash
-cargo run --example hello --release --target thumbv7m-none-eabi
-
 ```
 
 ## License
