@@ -1,0 +1,14 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "/home/luppy/cortex-m-quickstart"
+		},
+		{
+			"path": "/home/luppy/stm32f103xx-hal"
+		}
+	],
+	"settings": {}
+}
