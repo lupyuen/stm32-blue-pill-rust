@@ -5,7 +5,6 @@
 		}
 	],
 	"settings": {
-		"terminal.integrated.shell.windows": "C:\\WINDOWS\\System32\\bash.exe",
 		"rust.mode": "rls",
 		"rust.rls": {
 			"useRustfmt": false
