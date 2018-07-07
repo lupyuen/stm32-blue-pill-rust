@@ -98,13 +98,13 @@ Flash the program
 openocd -f interface/stlink-v2.cfg -f target/stm32f1x.cfg
 
 # Start a debug session in another terminal
-arm-none-eabi-gdb target/thumbv7em-none-eabihf/release/demo
+arm-none-eabi-gdb target/thumbv7m-none-eabi/release/stm32-blue-pill-rust
 ```
 
 Alternatively, you can use cargo run to build, flash and debug the program in a single step.
 
 ```bash
-cargo run --example hello --release --target thumbv7m-none-eabi
+cargo run --example hello --release
 
 ```
 

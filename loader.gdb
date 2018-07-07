@@ -1,3 +1,6 @@
+# GDB script for flashing firmware to STM32 Blue Pill.
+# This file used to be .gdbinit, which could not be autoloaded due to autoloading security in GDB.
+
 target remote :3333
 
 # print demangled symbols by default
