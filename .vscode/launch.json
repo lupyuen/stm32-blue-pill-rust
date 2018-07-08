@@ -9,10 +9,10 @@
             "request": "launch",
             "cwd": "${workspaceRoot}",
 
-            //  This is redundant. The target is specified in rtl_gdb_debug.txt.
-            "target": "./target/thumbv7m-none-eabi/release/stm32-blue-pill-rust",
+            //  This is redundant. The target is specified in loader.gdb.
+            "target": "target/thumbv7m-none-eabi/release/stm32-blue-pill-rust",
 
-            //  Start arm-none-eabi-gdb with the rtl_gdb_debug.txt script.  Connects to OpenOCD to send commands to SWD USB dongle.
+            //  Start arm-none-eabi-gdb with the loader.gdb script.  Connects to OpenOCD to send commands to ST-Link USB dongle.
             "gdbpath": "arm-none-eabi-gdb",
             "debugger_args": [
                 "-x",
@@ -23,8 +23,8 @@
             "valuesFormatting": "disabled",
 
             //  Enable debug output.
-            "printCalls": true,
-            "showDevDebugOutput": true,
+            "printCalls": false,
+            "showDevDebugOutput": false,
         }
     ]
 }

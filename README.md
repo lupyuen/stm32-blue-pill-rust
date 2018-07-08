@@ -96,8 +96,35 @@ Flash the program
 ```bash
 # Launch OpenOCD on a terminal. Scripts are located at /usr/share/openocd/scripts
 openocd -f interface/stlink-v2.cfg -f target/stm32f1x.cfg
+```
 
-# Start a debug session in another terminal
+Should show:
+
+```text
+GNU MCU Eclipse 64-bits Open On-Chip Debugger 0.10.0+dev-00487-gaf359c18 (2018-05-12-19:30)
+Licensed under GNU GPL v2
+For bug reports, read http://openocd.org/doc/doxygen/bugs.html
+WARNING: interface/stlink-v2.cfg is deprecated, please switch to interface/stlink.cfg
+Info : auto-selecting first available session transport "hla_swd". To override use 'transport select <transport>'.
+Info : The selected transport took over low-level target control. The results might differ compared to plain JTAG/SWD
+adapter speed: 1000 kHz
+adapter_nsrst_delay: 100
+none separate
+Info : Listening on port 6666 for tcl connections
+Info : Listening on port 4444 for telnet connections
+Info : Unable to match requested speed 1000 kHz, using 950 kHz
+Info : Unable to match requested speed 1000 kHz, using 950 kHz
+Info : clock speed 950 kHz
+Info : STLINK v2 JTAG v17 API v2 SWIM v4 VID 0x0483 PID 0x3748
+Info : using stlink api v2
+Info : Target voltage: 3.225397
+Info : stm32f1x.cpu: hardware has 6 breakpoints, 4 watchpoints
+Info : Listening on port 3333 for gdb connections
+```
+
+Start a debug session in another terminal:
+
+```bash
 arm-none-eabi-gdb target/thumbv7m-none-eabi/release/stm32-blue-pill-rust
 ```
 
