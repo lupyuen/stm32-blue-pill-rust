@@ -11,44 +11,43 @@ extern crate cortex_m_rt as rt;
 extern crate panic_semihosting;
 extern crate stm32f103xx_hal as hal;
 
+use rt::ExceptionFrame;
 use hal::delay::Delay;
 use hal::prelude::*;
-use hal::stm32f103xx;
-use rt::ExceptionFrame;
+use hal::stm32f103xx::Peripherals;
 
 entry!(main);
 
 fn main() -> ! {
     //  Get peripherals for the STM32 Blue Pill microcontroller.
-    let dp = stm32f103xx::Peripherals::take().unwrap();
-    //  Get peripherals common to ARM Cortex M processors.
-    let cp = cortex_m::Peripherals::take().unwrap();
+    let bluepill = Peripherals::take().unwrap();
 
-    //  Get the flash memory parts.
-    let mut flash = dp.FLASH.constrain();
-    //  Get the STM32 Reset and Clock Control (RCC).
-    let mut rcc = dp.RCC.constrain();
-
-    //  Get the clocks from the RCC and freeze the Access Control Register.
+    //  Get the clocks from the STM32 Reset and Clock Control (RCC) and freeze the Flash Access Control Register (ACR).
+    let mut rcc = bluepill.RCC.constrain();
+    let mut flash = bluepill.FLASH.constrain();
     let clocks = rcc.cfgr.freeze(&mut flash.acr);
 
-    //  Get GPIO Port C. Must enable the Advanced Peripheral Bus 2 (APB2) clock for Port C so that GPIO will work.
-    let mut gpioc = dp.GPIOC.split(&mut rcc.apb2);
+    //  Get GPIO Port C, which also enables the Advanced Peripheral Bus 2 (APB2) clock for Port C.
+    let mut gpioc = bluepill.GPIOC.split(&mut rcc.apb2);
 
-    //  Use Pin 13 of the Blue Pill for GPIO Port C. Select Output Push/Pull mode for the pin, which is connected to our LED.
+    //  Use Pin 13 of the Blue Pill for GPIO Port C. Select Output Push/Pull mode, which is connected to our LED.
     let mut led = gpioc.pc13.into_push_pull_output(&mut gpioc.crh);
 
     //  Create a delay timer from the RCC clocks.
+    let cp = cortex_m::Peripherals::take().unwrap();
     let mut delay = Delay::new(cp.SYST, clocks);
 
     //  Loop forever.
     loop {
         //  Output 3.3V on the LED Pin.
         led.set_high();
+
         //  Wait 1,000 millisec (1 sec).
         delay.delay_ms(1_000_u16);
+
         //  Output 0V on the LED Pin.
         led.set_low();
+        
         //  Wait 1,000 millisec (1 sec).
         delay.delay_ms(1_000_u16);
     }
