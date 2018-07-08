@@ -52,6 +52,13 @@ Install the rust-std component thumbv7m-none-eabi for ARM Cortex-M3.
 rustup target add thumbv7m-none-eabi
 ```
 
+Download the source files
+
+```bash
+git clone https://github.com/lupyuen/stm32-blue-pill-rust.git
+cd stm32-blue-pill-rust.git
+```
+
 Build the application
 
 ```bash
