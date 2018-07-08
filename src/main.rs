@@ -1,26 +1,28 @@
-//! "Blinky" using delays instead of a timer
+//! Blink the LED (connected to Pin 13) on and off with 1 second interval.
 
 #![deny(unsafe_code)]
 #![deny(warnings)]
 #![no_main]
 #![no_std]
 
-extern crate cortex_m;
-#[macro_use]
-extern crate cortex_m_rt;
-extern crate cortex_m_semihosting;
-extern crate panic_semihosting;
-extern crate stm32f103xx_hal as hal;
+extern crate cortex_m;  //  Low-level functions for ARM Cortex-M3 processor in STM32 Blue Pill.
+#[macro_use]  //  Import macros from the following crates,
+extern crate cortex_m_rt;  //  Startup and runtime functions for ARM Cortex-M3.
+extern crate cortex_m_semihosting;  //  Debug console functions for ARM Cortex-M3.
+extern crate panic_semihosting;  //  Panic reporting functions, which transmit to the debug console.
+extern crate stm32f103xx_hal as bluepill_hal;  //  Hardware Abstraction Layer (HAL) for STM32 Blue Pill.
 
-use core::fmt::Write;
-use cortex_m_rt::ExceptionFrame;
+use core::fmt::Write;  //  Provides writeln() function for debug console output.
+use cortex_m_rt::ExceptionFrame;  //  Stack frame for exception handling.
 use cortex_m_semihosting::hio;  //  For displaying messages on the debug console.
-use hal::delay::Delay;
-use hal::prelude::*;
-use hal::stm32f103xx::Peripherals;
+use bluepill_hal::delay::Delay;  //  Delay timer.
+use bluepill_hal::prelude::*;  //  Define HAL traits.
+use bluepill_hal::stm32f103xx::Peripherals;  //  Clocks, flash memory, GPIO for the STM32 Blue Pill.
 
+//  Blue Pill starts execution at function main().
 entry!(main);
 
+//  Blue Pill starts execution here. "-> !" means this function will never return (because of the loop).
 fn main() -> ! {
     //  Show "Hello, world!" on the debug console, which is shown in OpenOCD.
     let mut debug_out = hio::hstdout().unwrap();
@@ -69,12 +71,14 @@ fn main() -> ! {
     }
 }
 
+//  For any hard faults, show a message on the debug console and stop.
 exception!(HardFault, hard_fault);
 
 fn hard_fault(ef: &ExceptionFrame) -> ! {
     panic!("{:#?}", ef);
 }
 
+//  For any unhandled interrupts, show a message on the debug console and stop.
 exception!(*, default_handler);
 
 fn default_handler(irqn: i16) {

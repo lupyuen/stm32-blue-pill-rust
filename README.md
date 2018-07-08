@@ -10,62 +10,102 @@ Rust for STM32 Blue Pill with Visual Studio Code. Based on
 
 ## Install Prerequisites
 
-```bash
-sudo apt install pkg-config cmake libssl-dev zlib1g-dev
-```
-
-Install `rustup` (the Rust toolchain installer) from https://rustup.rs/
-
-Select the default option.
-
-Select nightly Rust toolchain newer than nightly-2018-04-08:
+For Ubuntu only: Install required packages (arm-none-eabi-gdb is obsolete)
 
 ```bash
-rustup default nightly
-```
-
-GDB: (gdb-arm-none-eabi is obsolete)
-
-```bash
-sudo apt install gdb-multiarch
+sudo apt install pkg-config cmake libssl-dev zlib1g-dev gdb-multiarch
 sudo ln -s /usr/bin/gdb-multiarch /usr/bin/arm-none-eabi-gdb
 ```
 
-OpenOCD:
+Install the ARM cross-compiler and linker:
 
-```bash
-sudo apt install openocd
-```
-
-ARM linker:
+For Ubuntu:
 
 ```bash
 sudo apt install binutils-arm-none-eabi
 ```
 
 For Windows:
-Browse to `C:\Program Files (x86)\GNU Tools Arm Embedded\7 2018-q2-update\bin`.
-Copy `arm-none-eabi-ar.exe` to `ar.exe`
 
-Install the rust-std component thumbv7m-none-eabi for ARM Cortex-M3.
+- Install from https://developer.arm.com/open-source/gnu-toolchain/gnu-rm/downloads
+
+- Select the "Add path to environment variable" option at the last step.
+
+- Browse to `C:\Program Files (x86)\GNU Tools Arm Embedded\7 2018-q2-update\bin`
+
+- Copy `arm-none-eabi-ar.exe` to `ar.exe`
+
+Check the ARM cross-compiler installation:
+
+```bash
+arm-none-eabi-gcc -v
+```
+
+Should show:
+
+```text
+gcc version 5.4.1 20160919 (release)
+```
+
+Install OpenOCD for debugging the Blue Pill:
+
+For Ubuntu:
+
+```bash
+sudo apt install openocd
+```
+
+For Windows:
+
+- Download from (unofficial release) https://github.com/gnu-mcu-eclipse/openocd/releases
+
+- Unzip and copy the files into `c:\openocd` such that `opencd.exe` is located in the folder `c:\openocd\bin\`
+
+Install `rustup` (the Rust toolchain installer) from https://rustup.rs/
+
+Select the default option when prompted.
+
+Switch to the nightly Rust toolchain instead of stable or beta:
+
+```bash
+rustup default nightly
+```
+
+Install the `rust-std` component `thumbv7m-none-eabi` to cross-compile for ARM Cortex-M3:
 
 ```bash
 rustup target add thumbv7m-none-eabi
 ```
 
-Download the source files
+Download the source files (install `git` if you haven't):
 
 ```bash
 git clone https://github.com/lupyuen/stm32-blue-pill-rust.git
 cd stm32-blue-pill-rust
 ```
 
-Build the application
+Install Visual Studio Code from ...
+
+Launch Visual Studio Code
+
+Install the following Visual Studio Code extensions by clicking these links: ...
+
+In Visual Studio Code, click `File -> Open Workspace`
+
+Select `workspace.code-workspace`
+
+Build the application:
 
 ```bash
 cargo clean
 cargo check --release
 cargo build --release
+```
+
+Should show:
+
+```text
+Finished release [optimized + debuginfo] target(s) in 1.43s
 ```
 
 Sanity check for the built application
@@ -87,19 +127,19 @@ ELF Header:
   Type:                              EXEC (Executable file)
   Machine:                           ARM
   Version:                           0x1
-  Entry point address:               0x80009d5
+  Entry point address:               0x8000cfb
   Start of program headers:          52 (bytes into file)
-  Start of section headers:          152956 (bytes into file)
-  Flags:                             0x5000202, Version5 EABI, soft-float ABI, <unknown>
+  Start of section headers:          258948 (bytes into file)
+  Flags:                             0x5000200, Version5 EABI, soft-float ABI
   Size of this header:               52 (bytes)
   Size of program headers:           32 (bytes)
-  Number of program headers:         2
+  Number of program headers:         3
   Size of section headers:           40 (bytes)
-  Number of section headers:         19
-  Section header string table index: 16
+  Number of section headers:         21
+  Section header string table index: 20
 ```
 
-Flash the program
+Run the program on the device:
 
 ```bash
 # Launch OpenOCD on a terminal. Scripts are located at /usr/share/openocd/scripts
@@ -130,17 +170,10 @@ Info : stm32f1x.cpu: hardware has 6 breakpoints, 4 watchpoints
 Info : Listening on port 3333 for gdb connections
 ```
 
-Start a debug session in another terminal:
+Start a debug session in another command window:
 
 ```bash
 arm-none-eabi-gdb -x loader.gdb target/thumbv7m-none-eabi/release/stm32-blue-pill-rust
-```
-
-Alternatively, you can use cargo run to build, flash and debug the program in a single step.
-
-```bash
-cargo run --example hello --release
-
 ```
 
 ## References
