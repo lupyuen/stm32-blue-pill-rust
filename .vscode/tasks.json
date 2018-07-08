@@ -6,7 +6,12 @@
         {
             "label": "Start OpenOCD (STM32 Blue Pill Rust)",
             "type": "shell",
-            "command": "c:\\openocd\\bin\\openocd -f interface/stlink-v2.cfg -f target/stm32f1x.cfg",
+            "windows": {
+                "command": "c:\\openocd\\bin\\openocd -f interface/stlink-v2.cfg -f target/stm32f1x.cfg",
+            },
+            "linux": {
+                "command": "openocd -f interface/stlink-v2.cfg -f target/stm32f1x.cfg",
+            },
             "problemMatcher": []
         },
         {

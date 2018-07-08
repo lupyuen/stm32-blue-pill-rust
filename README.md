@@ -133,7 +133,7 @@ Info : Listening on port 3333 for gdb connections
 Start a debug session in another terminal:
 
 ```bash
-arm-none-eabi-gdb target/thumbv7m-none-eabi/release/stm32-blue-pill-rust
+arm-none-eabi-gdb -x loader.gdb target/thumbv7m-none-eabi/release/stm32-blue-pill-rust
 ```
 
 Alternatively, you can use cargo run to build, flash and debug the program in a single step.
