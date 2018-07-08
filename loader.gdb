@@ -11,14 +11,14 @@ target remote :3333
 # Print demangled symbols by default.
 set print asm-demangle on
 
+# Enable ARM semihosting to show debug console output in OpenOCD console.
+monitor arm semihosting enable
+
 # Reset the device.
 monitor reset init
 monitor sleep 20
 monitor halt
 monitor sleep 20
-
-# Enable ARM semihosting.
-monitor arm semihosting enable
 
 # Load the program into device memory.
 file target/thumbv7m-none-eabi/release/stm32-blue-pill-rust

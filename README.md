@@ -173,12 +173,19 @@ Rust for STM32 Blue Pill with Visual Studio Code. Based on
     Section header string table index: 20
   ```
 
-- Run the program on the device:
+- Launch OpenOCD on a terminal. Scripts are located at /usr/share/openocd/scripts
 
-  ```bash
-  # Launch OpenOCD on a terminal. Scripts are located at /usr/share/openocd/scripts
-  openocd -f interface/stlink-v2.cfg -f target/stm32f1x.cfg
-  ```
+  - For Windows:
+
+    ```cmd
+    c:\openocd\bin\openocd -f interface/stlink-v2.cfg -f target/stm32f1x.cfg
+    ```
+
+  - For Ubuntu:
+
+    ```bash
+    openocd -f interface/stlink-v2.cfg -f target/stm32f1x.cfg
+    ```
 
 - You should see something like:
 
@@ -204,7 +211,7 @@ Rust for STM32 Blue Pill with Visual Studio Code. Based on
   Info : Listening on port 3333 for gdb connections
   ```
 
-- Start a debug session in another command window:
+- Run the program on the device: Start a debug session in another command window:
 
   ```bash
   arm-none-eabi-gdb -x loader.gdb target/thumbv7m-none-eabi/release/stm32-blue-pill-rust

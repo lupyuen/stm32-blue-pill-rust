@@ -1,9 +1,9 @@
-//! Blink the LED (connected to Pin 13) on and off with 1 second interval.
+//! Blink the LED (connected to Pin PC 13) on and off with 1 second interval.
 
 #![deny(unsafe_code)]
 #![deny(warnings)]
 #![no_main]
-#![no_std]
+#![no_std]  //  Don't use the Rust standard library. We are building a binary that can run on its own.
 
 extern crate cortex_m;  //  Low-level functions for ARM Cortex-M3 processor in STM32 Blue Pill.
 #[macro_use]  //  Import macros from the following crates,
@@ -42,7 +42,7 @@ fn main() -> ! {
     let mut gpioc = bluepill.GPIOC.split(&mut rcc.apb2);
     writeln!(debug_out, "zzz3").unwrap();
 
-    //  Use Pin 13 of the Blue Pill for GPIO Port C. Select Output Push/Pull mode, which is connected to our LED.
+    //  Use Pin PC 13 of the Blue Pill for GPIO Port C. Select Output Push/Pull mode, which is connected to our LED.
     let mut led = gpioc.pc13.into_push_pull_output(&mut gpioc.crh);
     writeln!(debug_out, "zzz4").unwrap();
 
@@ -75,7 +75,7 @@ fn main() -> ! {
 exception!(HardFault, hard_fault);
 
 fn hard_fault(ef: &ExceptionFrame) -> ! {
-    panic!("{:#?}", ef);
+    panic!("Hard fault: {:#?}", ef);
 }
 
 //  For any unhandled interrupts, show a message on the debug console and stop.
