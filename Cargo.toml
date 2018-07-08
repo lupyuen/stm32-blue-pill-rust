@@ -14,15 +14,18 @@
 name = "stm32-blue-pill-rust"
 version = "0.3.2"
 authors = ["Lee Lup Yuen <luppy@appkaki.com>"]
-description = "A template for building applications for ARM Cortex-M microcontrollers"
-keywords = ["arm", "cortex-m", "template"]
+description = "A sample Rust application for STM32 Blue Pill microcontrollers"
+keywords = ["arm", "cortex-m", "stm32", "bluepill"]
 categories = ["embedded", "no-std"]
 license = "MIT OR Apache-2.0"
 repository = "https://github.com/lupyuen/stm32-blue-pill-rust"
 
+# To minimize the executable size, we should always compile with --release flag. 
 [profile.release]
+# To optimize the usage of many crates, we should link with Link Time Optimization (LTO). 
 lto = true
 codegen-units = 1
+# Enable debugging in release mode.
 debug = true
 
 [dependencies]

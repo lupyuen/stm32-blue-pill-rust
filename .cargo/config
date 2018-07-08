@@ -1,3 +1,6 @@
+# Cargo build options
+# https://doc.rust-lang.org/cargo/reference/config.html
+
 [target.thumbv7m-none-eabi]
 runner = 'arm-none-eabi-gdb'
 # Select GNU linker:
