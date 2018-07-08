@@ -8,33 +8,6 @@ set architecture arm
 set remotetimeout 100000
 target remote :3333
 
-# Disable all messages
-set verbose off
-set complaints 0
-set confirm off
-set exec-done-display off
-show exec-done-display
-set trace-commands off
-# set debug aix-thread off
-# set debug dwarf2-die 0
-set debug displaced off 
-set debug expression 0
-set debug frame 0
-set debug infrun 0
-set debug observer 0
-set debug overload 0
-# Lup Yuen: Removed due to error.
-# set debugvarobj 0
-set pagination off
-set print address off
-set print symbol-filename off
-set print symbol off
-set print pretty off
-set print object off
-#set debug notification off
-set debug parser off
-set debug remote 0
-
 # Print demangled symbols by default.
 set print asm-demangle on
 
@@ -57,7 +30,10 @@ break stm32_blue_pill_rust::main
 continue
 
 # Remove the breakpoint at the main() function.
-## clear stm32_blue_pill_rust::main
+clear stm32_blue_pill_rust::main
+
+# Show the stopped location.
+where
 
 # Send captured ITM to the file itm.fifo
 # (the microcontroller SWO pin must be connected to the programmer SWO pin)
