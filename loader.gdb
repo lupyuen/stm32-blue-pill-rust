@@ -1,4 +1,4 @@
-# GDB script for flashing and running programs in STM32 Blue Pill.
+# GDB script for loading and running programs in STM32 Blue Pill.
 # This file used to be .gdbinit, which could not be autoloaded due to autoloading security in GDB.
 
 # Set architecture to ARM 32-bit. Needed for gdb-multiarch.
@@ -20,17 +20,20 @@ monitor sleep 20
 # Enable ARM semihosting.
 monitor arm semihosting enable
 
-# Load the program into flash memory.
+# Load the program into device memory.
 file target/thumbv7m-none-eabi/release/stm32-blue-pill-rust
+
+# Clear all breakpoints.
+clear
 
 # Set breakpoint at the main() function.
 break stm32_blue_pill_rust::main
 
-# Run the program and stop at the main function.
+# Run the program and stop at the main() function.
 continue
 
 # Remove the breakpoint at the main() function.
-clear stm32_blue_pill_rust::main
+clear
 
 # Show the stopped location.
 where
