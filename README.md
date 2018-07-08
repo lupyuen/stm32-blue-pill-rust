@@ -28,6 +28,7 @@ GDB: (gdb-arm-none-eabi is obsolete)
 
 ```bash
 sudo apt install gdb-multiarch
+sudo ln -s /usr/bin/gdb-multiarch /usr/bin/arm-none-eabi-gdb
 ```
 
 OpenOCD:
