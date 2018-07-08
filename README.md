@@ -56,7 +56,7 @@ Download the source files
 
 ```bash
 git clone https://github.com/lupyuen/stm32-blue-pill-rust.git
-cd stm32-blue-pill-rust.git
+cd stm32-blue-pill-rust
 ```
 
 Build the application
