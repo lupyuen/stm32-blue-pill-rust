@@ -30,44 +30,37 @@ fn main() -> ! {
 
     //  Get peripherals (clocks, flash memory, GPIO) for the STM32 Blue Pill microcontroller.
     let bluepill = Peripherals::take().unwrap();
-    writeln!(debug_out, "zzz1").unwrap();
 
     //  Get the clocks from the STM32 Reset and Clock Control (RCC) and freeze the Flash Access Control Register (ACR).
     let mut rcc = bluepill.RCC.constrain();
     let mut flash = bluepill.FLASH.constrain();
     let clocks = rcc.cfgr.freeze(&mut flash.acr);
-    writeln!(debug_out, "zzz2").unwrap();
 
     //  Get GPIO Port C, which also enables the Advanced Peripheral Bus 2 (APB2) clock for Port C.
     let mut gpioc = bluepill.GPIOC.split(&mut rcc.apb2);
-    writeln!(debug_out, "zzz3").unwrap();
 
     //  Use Pin PC 13 of the Blue Pill for GPIO Port C. Select Output Push/Pull mode, which is connected to our LED.
     let mut led = gpioc.pc13.into_push_pull_output(&mut gpioc.crh);
-    writeln!(debug_out, "zzz4").unwrap();
 
     //  Create a delay timer from the RCC clocks.
     let cp = cortex_m::Peripherals::take().unwrap();
     let mut delay = Delay::new(cp.SYST, clocks);
-    writeln!(debug_out, "zzz5").unwrap();
 
     //  Loop forever.
     loop {
-        //  Output 3.3V on the LED Pin.
+        //  Output 3.3V on the LED Pin and show a message in OpenOCD console.
         led.set_high();
-        writeln!(debug_out, "zzz6").unwrap();
+        writeln!(debug_out, "LED is ON").unwrap();
 
         //  Wait 1,000 millisec (1 sec).
         delay.delay_ms(1_000_u16);
-        writeln!(debug_out, "zzz7").unwrap();
 
-        //  Output 0V on the LED Pin.
+        //  Output 0V on the LED Pin and show a message in OpenOCD console.
         led.set_low();
-        writeln!(debug_out, "zzz8").unwrap();
+        writeln!(debug_out, "LED is OFF").unwrap();
 
         //  Wait 1,000 millisec (1 sec).
         delay.delay_ms(1_000_u16);
-        writeln!(debug_out, "zzz9").unwrap();
     }
 }
 

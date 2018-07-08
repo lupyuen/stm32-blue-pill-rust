@@ -3,13 +3,13 @@
     "version": "0.2.0",
     "configurations": [        
         {
-            //  Debug the STM32 Blue Pill flash code.
+            //  Debug the STM32 Blue Pill program.
             "name": "Debug (STM32 Blue Pill Rust)",
             "type": "gdb",
             "request": "launch",
             "cwd": "${workspaceRoot}",
 
-            //  This is redundant. The target is specified in loader.gdb.
+            //  This is the target program to be loaded into the device and debugged.
             "target": "target/thumbv7m-none-eabi/release/stm32-blue-pill-rust",
 
             //  Start arm-none-eabi-gdb with the loader.gdb script.  Connects to OpenOCD to send commands to ST-Link USB dongle.
