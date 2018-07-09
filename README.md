@@ -67,7 +67,7 @@ Rust for STM32 Blue Pill with Visual Studio Code. Based on
 
   - Copy `arm-none-eabi-ar.exe` to `ar.exe`
 
-  - This `ar.exe` fix is temporary until we find a fix for the Windows build
+  - This `ar.exe` workaround is temporary until we find a fix for the Windows build
 
 - For Ubuntu:
 
@@ -140,23 +140,59 @@ Rust for STM32 Blue Pill with Visual Studio Code. Based on
 
 ### Install Visual Studio Code
 
-- Install Visual Studio Code from ...
+- Install Visual Studio Code from https://code.visualstudio.com/download
 
-- Launch Visual Studio Code
+- Launch Visual Studio Code and install the following extensions (just click the links below followed by the "Install" button):
 
-- Install the following Visual Studio Code extensions by clicking these links: ...
+  1. Better TOML (bungcip)
+    https://marketplace.visualstudio.com/items?itemName=bungcip.better-toml
+
+  1. C/C++ (Microsoft)
+    https://marketplace.visualstudio.com/items?itemName=ms-vscode.cpptools
+
+  1. Native Debug (WebFreak)
+    https://marketplace.visualstudio.com/items?itemName=webfreak.debug
+
+  1. Rust (kalitaalexey)
+    https://marketplace.visualstudio.com/items?itemName=kalitaalexey.vscode-rust
+
+  1. Rust (rls) (rust-lang)
+    https://marketplace.visualstudio.com/items?itemName=rust-lang.rust
 
 - In Visual Studio Code, click `File -> Open Workspace`
 
 - Browse to the `stm32-blue-pill-rust` folder and select `workspace.code-workspace`
 
-### Building and Debugging from Visual Studio Code
+- In the Explorer → Workspace pane at left, browse to the source folder `src` and select the Rust source file `main.rs`
 
-- Building: ...
+- When prompted, install the Rust Language Service (RLS), which provides Autocomplete and "Go To Definition" features for Rust.
 
-- Start OpenOCD: ...
+### Compiling the Rust program in Visual Studio Code
 
-- Debugging: ...
+- In Visual Studio Code, click `Tasks → Run` Build Task.
+
+- Wait a while for the Rust program to be compiled.
+
+- Check the log in the Terminal window at the bottom of the Visual Studio Code screen.
+
+- When you see `Finished released [optimized + debuginfo] target(s)`, that means the Rust program has been compiled successfully.
+
+- We'll proceed to the next step to run the program.
+
+- But if you see an error, you'll have to fix the error and recompile the program.
+  Just mouse over the filename and line number in the log, and press Ctrl-click to jump to the offending line of code.
+
+### Running the Rust program in Visual Studio Code
+
+- Click `Tasks → Run Task`
+
+- Select `Connect To STM32 Blue Pill`
+
+- Check the messages from OpenOCD in the Terminal window at the bottom of Visual Studio Code.
+
+- When you see `Listening on port 3333 for gdb connections`, our program is ready to be started on the Blue Pill.
+
+- Click Debug → Start Debugging.
 
 ### Building and Debugging from the Command Line
 
