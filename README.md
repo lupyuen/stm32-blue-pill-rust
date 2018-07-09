@@ -113,6 +113,10 @@ Rust for STM32 Blue Pill with Visual Studio Code. Based on
 
 ### Install `rustup`
 
+- For Windows only: Install Build Tools for Visual Studio 2017 from https://aka.ms/buildtools <br>
+    Under "Workloads", select `Visual C++ Build Tools`. <br>
+    Needed by rustup.
+
 - Install `rustup` (the Rust toolchain installer) from https://rustup.rs/
 
 - Select the default option when prompted.
