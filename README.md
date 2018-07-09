@@ -192,7 +192,10 @@ Rust for STM32 Blue Pill with Visual Studio Code. Based on
 
 - When you see `Listening on port 3333 for gdb connections`, our program is ready to be started on the Blue Pill.
 
-- Click Debug → Start Debugging.
+- Click `Debug → Start Debugging`
+
+- Note: There is a bug in the debugger for Ubuntu - gdb stops with an error. To be fixed.
+  Meanwhile you can use the command-line debugger in Ubuntu.
 
 ### Building and Debugging from the Command Line
 
@@ -279,17 +282,43 @@ Rust for STM32 Blue Pill with Visual Studio Code. Based on
   Info : Listening on port 3333 for gdb connections
   ```
 
-- Run the program on the device: Start a debug session in another command window:
+- Start a debug session in another command window:
 
   ```bash
   arm-none-eabi-gdb -x loader.gdb target/thumbv7m-none-eabi/release/stm32-blue-pill-rust
   ```
 
-## Task configuration: `.vscode/tasks.json`
+- Common GDB commands:
 
-## Debugger configuration: `.vscode/launch.json`
+  - step: Execute the current source line, step into functions if present. Same as the step into  command in Visual Studio Code.
 
-## Debugger script: `loader.gdb`
+  - next: Execute the current source line, don't step into functions. Same as the step over command in Visual Studio Code.
+
+  - where: Show stack trace.
+
+  - where full: Show stack trace with local variables.
+
+  More commands: https://darkdust.net/files/GDB%20Cheat%20Sheet.pdf
+
+## Visual Studio Code Configuration
+
+Customisation of the Visual Studio Code UI was done through the following files:
+
+### Task configuration - `.vscode/tasks.json`
+
+Defines the following tasks:
+
+1. Connect: Launches OpenOCD. Uses different commands for Ubuntu and Windows (`opencd` vs `c:\opencd\bin\opencd`).
+
+1. Build: Executes `cargo build --release`. Configured as the default build task.
+
+1. Remove: Executes `cargo clean`
+
+1. Check: Executes `cargo check --release`
+
+### Debugger configuration - `.vscode/launch.json`
+
+### Debugger script - `loader.gdb`
 
 ## References
 
