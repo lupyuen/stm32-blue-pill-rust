@@ -24,7 +24,7 @@ entry!(main);
 
 //  Blue Pill starts execution here. "-> !" means this function will never return (because of the loop).
 fn main() -> ! {
-    //  Show "Hello, world!" on the debug console, which is shown in OpenOCD.
+    //  Show "Hello, world!" on the debug console, which is shown in OpenOCD. "mut" means that this object is mutable, i.e. it can change.
     let mut debug_out = hio::hstdout().unwrap();
     writeln!(debug_out, "Hello, world!").unwrap();
 
@@ -39,7 +39,7 @@ fn main() -> ! {
     //  Get GPIO Port C, which also enables the Advanced Peripheral Bus 2 (APB2) clock for Port C.
     let mut gpioc = bluepill.GPIOC.split(&mut rcc.apb2);
 
-    //  Use Pin PC 13 of the Blue Pill for GPIO Port C. Select Output Push/Pull mode, which is connected to our LED.
+    //  Use Pin PC 13 of the Blue Pill for GPIO Port C. Select Output Push/Pull mode for the pin, which is connected to our LED.
     let mut led = gpioc.pc13.into_push_pull_output(&mut gpioc.crh);
 
     //  Create a delay timer from the RCC clocks.
