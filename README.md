@@ -159,11 +159,11 @@ Rust for STM32 Blue Pill with Visual Studio Code. Based on
   1. Rust (rls) (rust-lang)
     https://marketplace.visualstudio.com/items?itemName=rust-lang.rust
 
-- In Visual Studio Code, click `File -> Open Workspace`
+- In Visual Studio Code, click `File → Open Workspace`
 
 - Browse to the `stm32-blue-pill-rust` folder and select `workspace.code-workspace`
 
-- In the Explorer → Workspace pane at left, browse to the source folder `src` and select the Rust source file `main.rs`
+- In the `Explorer → Workspace` pane at left, browse to the source folder `src` and select the Rust source file `main.rs`
 
 - When prompted, install the Rust Language Service (RLS), which provides Autocomplete and "Go To Definition" features for Rust.
 
@@ -318,7 +318,47 @@ Defines the following tasks:
 
 ### Debugger configuration - `.vscode/launch.json`
 
+- Launches the following command when the debugger is started:
+
+  ```bash
+  arm-none-eabi-gdb -x loader.gdb target/thumbv7m-none-eabi/release/stm32-blue-pill-rust
+  ```
+
+- This command causes `gdb` to execute the `loader.gdb` script at the start of debugging.
+
+- The mandatory parameter `target/thumbv7m-none-eabi/release/stm32-blue-pill-rust` is redundant. The target is specified again in `loader.gdb.`
+
 ### Debugger script - `loader.gdb`
+
+1. This is the GDB script for loading and running programs in STM32 Blue Pill.
+
+1. Called when debugging begins. Defined in `.vscode/launch.json`
+
+1. This file used to be `.gdbinit,` which could not be autoloaded due to autoloading security in GDB.
+
+1. Set architecture to ARM 32-bit. Needed for gdb-multiarch on Ubuntu.
+
+1. Send GDB commands to OpenOCD, which listens on port 3333.  Extend the timeout.
+
+1. Disable all messages.
+
+1. Enable ARM semihosting to show debug console output in OpenOCD console.
+
+1. Reset the device.
+
+1. Specify `target/thumbv7m-none-eabi/release/stm32-blue-pill-rust` as the target program to be debugged.  Must be specified here (not the command line) because the VSCode debugger will fail without it.
+
+1. Load the program into device memory.
+
+1. Set breakpoint at the main() function.
+
+1. Run the program and stop at the main() function.
+
+1. Remove the breakpoint at the main() function.
+
+1. Step into the first line of the main() function. Else gdb will complain about "entry macros" file missing.
+
+1. TODO: Write program to flash memory so that it becomes permanent.
 
 ## References
 
