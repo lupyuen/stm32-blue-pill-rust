@@ -3,11 +3,43 @@
 Rust for STM32 Blue Pill with Visual Studio Code. Based on
 
 1. Jorge Aparicio's Discovery book: https://japaric.github.io/discovery/
+
 1. Jorge Aparicio's HAL for Blue Pill: https://japaric.github.io/stm32f103xx-hal/stm32f103xx_hal/
 
 1. Jorge Aparicio's Cortex-M Quickstart: https://docs.rs/cortex-m-quickstart/0.2.7/cortex_m_quickstart/
 
 1. Nerijus Arlauskas's Embedded Rust blog: http://nercury.github.io/rust/embedded/experiments/2018/04/29/rust-embedded-01-discovery-vl-flipping-bits.html
+
+## Connecting the STM32 Blue Pill to ST-Link V2 USB Debugger
+
+<table>
+    <thead>
+        <td colspan="2">
+            <b> STM32 Blue Pill </b>
+        </td>
+        <td colspan="2">
+            <b> ST-Link V2 USB Debugger </b>
+        </td>
+    </thead>
+    <tbody>
+        <tr>
+            <td> V3 </td><td> [Red] </td>
+            <td> 3.3V </td><td> (Pin 8) </td>
+        </tr>
+        <tr>
+            <td> IO </td><td> [Orange] </td>
+            <td> SWDIO </td><td> (Pin 4) </td>
+        </tr>
+        <tr>
+            <td> CLK </td><td> [Brown] </td>
+            <td> SWDCLK </td><td> (Pin 2) </td>
+        </tr>
+        <tr>
+            <td> GND </td><td> [Black] </td>
+            <td> GND </td><td> (Pin 6) </td>
+        </tr>
+    </tbody>
+</table>
 
 ## Installation and Usage
 
