@@ -23,8 +23,8 @@
             "valuesFormatting": "disabled",
 
             //  Enable debug output.
-            "printCalls": false,
-            "showDevDebugOutput": false,
+            "printCalls": true,
+            "showDevDebugOutput": true,
         }
     ]
 }

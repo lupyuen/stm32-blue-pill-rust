@@ -21,6 +21,7 @@ monitor halt
 monitor sleep 20
 
 # Load the program into device memory.
+file target/thumbv7m-none-eabi/release/stm32-blue-pill-rust
 load
 
 # Set breakpoint at the main() function.
@@ -30,10 +31,10 @@ break stm32_blue_pill_rust::main
 continue
 
 # Remove the breakpoint at the main() function.
-clear stm32_blue_pill_rust::main
+#clear stm32_blue_pill_rust::main
 
-# Show the stopped location.
-where
+####
+#monitor sleep 300
 
 ##########################################################################
 # Optional Commands
