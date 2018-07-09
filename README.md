@@ -53,21 +53,25 @@ Rust for STM32 Blue Pill with Visual Studio Code. Based on
   sudo ln -s /usr/bin/gdb-multiarch /usr/bin/arm-none-eabi-gdb
   ```
 
-### Install ARM cross-compiler and linker
+### Install ARM Cross-Compiler and Linker
 
 - For Windows:
 
-  - Install from https://developer.arm.com/open-source/gnu-toolchain/gnu-rm/downloads
+  1. Install ARM Cross-Compiler and Linker from the ARM Developer Website: <br>
+    https://developer.arm.com/open-source/gnu-toolchain/gnu-rm/downloads
 
-  - Select the _"Add path to environment variable"_ option at the last step.
+  1. Scroll down the page till you find <br>
+    `Windows 32-bit File: gcc-arm-none-eabi-…-win32.exe` <br>
+    Click `Download` <br>
 
-  - Browse to the folder `C:\Program Files (x86)\GNU Tools Arm Embedded\7 2018-q2-update\bin`
+  1. Select the _"Add path to environment variable"_ option at the last install step
 
-  - The `"7 2018-q2-update"` part may be different for your installation
+  1. In Windows Explorer, browse to <br>
+    `C:\Program Files (x86)\GNU Tools Arm Embedded\7 2018-q2-update\bin` <br>
+    (The `7 2018-q2-update` part may be different for your installation)
 
-  - Copy `arm-none-eabi-ar.exe` to `ar.exe`
-
-  - This `ar.exe` workaround is temporary until we find a fix for the Windows build
+  1. Copy the file `arm-none-eabi-ar.exe` to `ar.exe` <br>
+    (This `ar.exe` workaround is temporary until we find a fix for the Windows Rust build)
 
 - For Ubuntu:
 
@@ -75,27 +79,29 @@ Rust for STM32 Blue Pill with Visual Studio Code. Based on
   sudo apt install binutils-arm-none-eabi
   ```
 
-### Check ARM cross-compiler installation
+### Check ARM Cross-Compiler Installation
 
-- Open a command prompt and run
+1. Open a __new__  Windows or Ubuntu command prompt (not Windows Bash) and enter
 
   ```bash
   arm-none-eabi-gcc -v
   ```
 
-- You should see something like:
+1. You should see something like `version 5.4.1 20160919 (release)`
 
-  ```text
-  gcc version 5.4.1 20160919 (release)
-  ```
+1. If you see no errors, close the command prompt.
 
-### Install OpenOCD for debugging the Blue Pill
+1. If you see an error, update your PATH environment variable so that it  includes the folder for the ARM ".exe" files.
+
+### Install OpenOCD For Debugging The Blue Pill
 
 - For Windows:
 
-  - Download the unofficial release from https://github.com/gnu-mcu-eclipse/openocd/releases
+  1. Download OpenOCD (for debugging the Blue Pill) from the unofficial OpenOCD release website: <br>
+    https://github.com/gnu-mcu-eclipse/openocd/releases <br>
+    Look for `gnu-mcu-eclipse-openocd-…-win64.zip`
 
-  - Unzip and copy the files into `c:\openocd` such that `opencd.exe` is located in the folder `c:\openocd\bin\`
+  1. Unzip the OpenOCD download and copy the OpenOCD files into `c:\openocd` such that `opencd.exe` is located in the folder `c:\openocd\bin`
 
 - For Ubuntu:
 
@@ -103,37 +109,38 @@ Rust for STM32 Blue Pill with Visual Studio Code. Based on
   sudo apt install openocd
   ```
 
-### Install ST-Link USB driver
+### Install ST-Link USB Driver
 
-- For Windows only: Install the ST-Link USB driver from
-
+1. For Windows only: Download the ST-Link USB driver from the ST-Link Driver Website (email registration required): <br>
   http://www.st.com/en/embedded-software/stsw-link009.html
 
-  If you're using 64-bit Windows, select the 64-bit version of the driver.
+1. Scroll down and click the `Get Software` button
+
+1. Unzip the ST-Link download. Double-click the `dpinst_amd64.exe` installer.
 
 ### Install `rustup`
 
-- For Windows only: Install Build Tools for Visual Studio 2017 from https://aka.ms/buildtools <br>
+1. For Windows only: Install Build Tools for Visual Studio 2017 from https://aka.ms/buildtools <br>
     Under "Workloads", select `Visual C++ Build Tools`. <br>
-    Needed by rustup.
+    Needed by `rustup`
 
-- Install `rustup` (the Rust toolchain installer) from https://rustup.rs/
+1. Install `rustup` (the Rust toolchain installer) from https://rustup.rs/
 
-- Select the default option when prompted.
+1. Select the default option when prompted.
 
-- Switch to the nightly Rust toolchain (instead of stable or beta):
+1. Switch to the nightly Rust toolchain (instead of stable or beta):
 
   ```bash
   rustup default nightly
   ```
 
-- Install the `rust-std` component `thumbv7m-none-eabi` to cross-compile for ARM Cortex-M3 (the processor used in the Blue Pill):
+1. Install the `rust-std` component `thumbv7m-none-eabi` to cross-compile for ARM Cortex-M3 (the processor used in the Blue Pill):
 
   ```bash
   rustup target add thumbv7m-none-eabi
   ```
 
-### Download `stm32-blue-pill-rust` files
+### Download `stm32-blue-pill-rust` Source Files
 
 - Download the source files from GitHub (install `git` if you haven't):
 
@@ -144,165 +151,171 @@ Rust for STM32 Blue Pill with Visual Studio Code. Based on
 
 ### Install Visual Studio Code
 
-- Install Visual Studio Code from https://code.visualstudio.com/download
+1. Install Visual Studio Code from https://code.visualstudio.com/download
 
-- Launch Visual Studio Code and install the following extensions (just click the links below followed by the "Install" button):
+1. Launch Visual Studio Code and install the following extensions (just click the links below followed by the `Install` button and `Open Visual Studio Code`):
 
-  1. Better TOML (bungcip)
-    https://marketplace.visualstudio.com/items?itemName=bungcip.better-toml
+    - Better TOML (bungcip)
+      https://marketplace.visualstudio.com/items?itemName=bungcip.better-toml
 
-  1. C/C++ (Microsoft)
-    https://marketplace.visualstudio.com/items?itemName=ms-vscode.cpptools
+    - C/C++ (Microsoft)
+      https://marketplace.visualstudio.com/items?itemName=ms-vscode.cpptools
 
-  1. Native Debug (WebFreak)
-    https://marketplace.visualstudio.com/items?itemName=webfreak.debug
+    - Native Debug (WebFreak)
+      https://marketplace.visualstudio.com/items?itemName=webfreak.debug
 
-  1. Rust (kalitaalexey)
-    https://marketplace.visualstudio.com/items?itemName=kalitaalexey.vscode-rust
+    - Rust (kalitaalexey)
+      https://marketplace.visualstudio.com/items?itemName=kalitaalexey.vscode-rust
 
-  1. Rust (rls) (rust-lang)
-    https://marketplace.visualstudio.com/items?itemName=rust-lang.rust
+    - Rust (rls) (rust-lang)
+      https://marketplace.visualstudio.com/items?itemName=rust-lang.rust
 
-- In Visual Studio Code, click `File → Open Workspace`
+1. In Visual Studio Code, click `Install` when prompted to install the above extensions
 
-- Browse to the `stm32-blue-pill-rust` folder and select `workspace.code-workspace`
+1. Restart Visual Studio Code
 
-- In the `Explorer → Workspace` pane at left, browse to the source folder `src` and select the Rust source file `main.rs`
+1. Click `File → Open Workspace`
 
-- When prompted, install the Rust Language Service (RLS), which provides Autocomplete and "Go To Definition" features for Rust.
+1. Browse to the `stm32-blue-pill-rust` folder and select `workspace.code-workspace`
+
+1. In the `Explorer → Workspace` pane at left, browse to the source folder `src` and select the Rust source file `main.rs`
+
+1. When prompted, install the Rust Language Service (RLS), which provides Autocomplete and "Go To Definition" features for Rust.
 
 ### Compiling the Rust program in Visual Studio Code
 
-- In Visual Studio Code, click `Tasks → Run` Build Task.
+1. In Visual Studio Code, click `Tasks → Run` Build Task.
 
-- Wait a while for the Rust program to be compiled.
+1. Wait a while for the Rust program to be compiled.
 
-- Check the log in the Terminal window at the bottom of the Visual Studio Code screen.
+1. Check the log in the Terminal window at the bottom of the Visual Studio Code screen.
 
-- When you see `Finished released [optimized + debuginfo] target(s)`, that means the Rust program has been compiled successfully.
+1. When you see `Finished released [optimized + debuginfo] target(s)`, that means the Rust program has been compiled successfully.
 
-- We'll proceed to the next step to run the program.
+1. We'll proceed to the next step to run the program.
 
-- But if you see an error, you'll have to fix the error and recompile the program.
+1. But if you see an error, you'll have to fix the error and recompile the program.
   Just mouse over the filename and line number in the log, and press Ctrl-click to jump to the offending line of code.
 
 ### Running the Rust program in Visual Studio Code
 
-- Click `Tasks → Run Task`
+1. Click `Tasks → Run Task`
 
-- Select `Connect To STM32 Blue Pill`
+1. Select `Connect To STM32 Blue Pill`
 
-- Check the messages from OpenOCD in the Terminal window at the bottom of Visual Studio Code.
+1. Check the messages from OpenOCD in the Terminal window at the bottom of Visual Studio Code.
 
-- When you see `Listening on port 3333 for gdb connections`, our program is ready to be started on the Blue Pill.
+1. When you see `Listening on port 3333 for gdb connections`, our program is ready to be started on the Blue Pill.
 
-- Click `Debug → Start Debugging`
+1. Click `Debug → Start Debugging`
 
-- Note: There is a bug in the debugger for Ubuntu - gdb stops with an error. To be fixed.
+1. Note: There is a bug in the debugger for Ubuntu: gdb stops with an error. To be fixed.
   Meanwhile you can use the command-line debugger in Ubuntu.
+
+### Building from the Command Line
+
+1. Build the application:
+
+    ```bash
+    cargo clean
+    cargo check --release
+    cargo build --release
+    ```
+
+1. You should see something like:
+
+    ```text
+    Finished release [optimized + debuginfo] target(s) in 1.43s
+    ```
+
+1. Sanity check for the built application
+
+    ```bash
+    arm-none-eabi-readelf -h target/thumbv7m-none-eabi/release/stm32-blue-pill-rust
+    ```
+
+1. You should see something like:
+
+    ```text
+    ELF Header:
+      Magic:   7f 45 4c 46 01 01 01 00 00 00 00 00 00 00 00 00
+      Class:                             ELF32
+      Data:                              2's complement, little endian
+      Version:                           1 (current)
+      OS/ABI:                            UNIX 1. System V
+      ABI Version:                       0
+      Type:                              EXEC (Executable file)
+      Machine:                           ARM
+      Version:                           0x1
+      Entry point address:               0x8000cfb
+      Start of program headers:          52 (bytes into file)
+      Start of section headers:          258948 (bytes into file)
+      Flags:                             0x5000200, Version5 EABI, soft-float ABI
+      Size of this header:               52 (bytes)
+      Size of program headers:           32 (bytes)
+      Number of program headers:         3
+      Size of section headers:           40 (bytes)
+      Number of section headers:         21
+      Section header string table index: 20
+    ```
 
 ### Building and Debugging from the Command Line
 
-- Build the application:
+1. Launch OpenOCD on a terminal. Scripts are located at `/usr/share/openocd/scripts`
 
-  ```bash
-  cargo clean
-  cargo check --release
-  cargo build --release
-  ```
+    - For Windows:
 
-- You should see something like:
+      ```cmd
+      c:\openocd\bin\openocd -f interface/stlink-v2.cfg -f target/stm32f1x.cfg
+      ```
 
-  ```text
-  Finished release [optimized + debuginfo] target(s) in 1.43s
-  ```
+    - For Ubuntu:
 
-  Sanity check for the built application
+      ```bash
+      openocd -f interface/stlink-v2.cfg -f target/stm32f1x.cfg
+      ```
 
-  ```bash
-  arm-none-eabi-readelf -h target/thumbv7m-none-eabi/release/stm32-blue-pill-rust
-  ```
+1. You should see something like:
 
-- You should see something like:
-
-  ```text
-  ELF Header:
-    Magic:   7f 45 4c 46 01 01 01 00 00 00 00 00 00 00 00 00
-    Class:                             ELF32
-    Data:                              2's complement, little endian
-    Version:                           1 (current)
-    OS/ABI:                            UNIX - System V
-    ABI Version:                       0
-    Type:                              EXEC (Executable file)
-    Machine:                           ARM
-    Version:                           0x1
-    Entry point address:               0x8000cfb
-    Start of program headers:          52 (bytes into file)
-    Start of section headers:          258948 (bytes into file)
-    Flags:                             0x5000200, Version5 EABI, soft-float ABI
-    Size of this header:               52 (bytes)
-    Size of program headers:           32 (bytes)
-    Number of program headers:         3
-    Size of section headers:           40 (bytes)
-    Number of section headers:         21
-    Section header string table index: 20
-  ```
-
-- Launch OpenOCD on a terminal. Scripts are located at /usr/share/openocd/scripts
-
-  - For Windows:
-
-    ```cmd
-    c:\openocd\bin\openocd -f interface/stlink-v2.cfg -f target/stm32f1x.cfg
+    ```text
+    GNU MCU Eclipse 64-bits Open On-Chip Debugger 0.10.0+dev-00487-gaf359c18 (2018-05-12-19:30)
+    Licensed under GNU GPL v2
+    For bug reports, read http://openocd.org/doc/doxygen/bugs.html
+    WARNING: interface/stlink-v2.cfg is deprecated, please switch to interface/stlink.cfg
+    Info : auto-selecting first available session transport "hla_swd". To override use 'transport select <transport>'.
+    Info : The selected transport took over low-level target control. The results might differ compared to plain JTAG/SWD
+    adapter speed: 1000 kHz
+    adapter_nsrst_delay: 100
+    none separate
+    Info : Listening on port 6666 for tcl connections
+    Info : Listening on port 4444 for telnet connections
+    Info : Unable to match requested speed 1000 kHz, using 950 kHz
+    Info : Unable to match requested speed 1000 kHz, using 950 kHz
+    Info : clock speed 950 kHz
+    Info : STLINK v2 JTAG v17 API v2 SWIM v4 VID 0x0483 PID 0x3748
+    Info : using stlink api v2
+    Info : Target voltage: 3.225397
+    Info : stm32f1x.cpu: hardware has 6 breakpoints, 4 watchpoints
+    Info : Listening on port 3333 for gdb connections
     ```
 
-  - For Ubuntu:
+1. Start a debug session in another command window:
 
     ```bash
-    openocd -f interface/stlink-v2.cfg -f target/stm32f1x.cfg
+    arm-none-eabi-gdb -x loader.gdb target/thumbv7m-none-eabi/release/stm32-blue-pill-rust
     ```
 
-- You should see something like:
+1. Common GDB commands:
 
-  ```text
-  GNU MCU Eclipse 64-bits Open On-Chip Debugger 0.10.0+dev-00487-gaf359c18 (2018-05-12-19:30)
-  Licensed under GNU GPL v2
-  For bug reports, read http://openocd.org/doc/doxygen/bugs.html
-  WARNING: interface/stlink-v2.cfg is deprecated, please switch to interface/stlink.cfg
-  Info : auto-selecting first available session transport "hla_swd". To override use 'transport select <transport>'.
-  Info : The selected transport took over low-level target control. The results might differ compared to plain JTAG/SWD
-  adapter speed: 1000 kHz
-  adapter_nsrst_delay: 100
-  none separate
-  Info : Listening on port 6666 for tcl connections
-  Info : Listening on port 4444 for telnet connections
-  Info : Unable to match requested speed 1000 kHz, using 950 kHz
-  Info : Unable to match requested speed 1000 kHz, using 950 kHz
-  Info : clock speed 950 kHz
-  Info : STLINK v2 JTAG v17 API v2 SWIM v4 VID 0x0483 PID 0x3748
-  Info : using stlink api v2
-  Info : Target voltage: 3.225397
-  Info : stm32f1x.cpu: hardware has 6 breakpoints, 4 watchpoints
-  Info : Listening on port 3333 for gdb connections
-  ```
+    - step: Execute the current source line, step into functions if present. Same as the step into  command in Visual Studio Code.
 
-- Start a debug session in another command window:
+    - next: Execute the current source line, don't step into functions. Same as the step over command in Visual Studio Code.
 
-  ```bash
-  arm-none-eabi-gdb -x loader.gdb target/thumbv7m-none-eabi/release/stm32-blue-pill-rust
-  ```
+    - where: Show stack trace.
 
-- Common GDB commands:
+    - where full: Show stack trace with local variables.
 
-  - step: Execute the current source line, step into functions if present. Same as the step into  command in Visual Studio Code.
-
-  - next: Execute the current source line, don't step into functions. Same as the step over command in Visual Studio Code.
-
-  - where: Show stack trace.
-
-  - where full: Show stack trace with local variables.
-
-  More commands: https://darkdust.net/files/GDB%20Cheat%20Sheet.pdf
+    More commands: https://darkdust.net/files/GDB%20Cheat%20Sheet.pdf
 
 ## Visual Studio Code Configuration
 
