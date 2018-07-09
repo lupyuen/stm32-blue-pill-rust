@@ -130,7 +130,7 @@ Rust for STM32 Blue Pill with Visual Studio Code. Based on
 
 1. Select the default option when prompted.
 
-1. Switch to the nightly Rust toolchain (instead of stable or beta):
+1. Switch to the nightly Rust toolchain (instead of stable or beta). Open a __new__  Windows or Ubuntu command prompt (not Windows Bash) and enter:
 
     ```bash
     rustup default nightly
