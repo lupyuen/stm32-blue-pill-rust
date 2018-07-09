@@ -38,9 +38,9 @@ monitor arm semihosting enable
 
 # Reset the device.
 monitor reset init
-monitor sleep 20
+monitor sleep 1000
 monitor halt
-monitor sleep 20
+monitor sleep 1000
 
 # Specify the target program to be debugged.  Must be specified here (not the command line) because the VSCode debugger will fail without it.
 file target/thumbv7m-none-eabi/release/stm32-blue-pill-rust

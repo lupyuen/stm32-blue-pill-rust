@@ -1,8 +1,8 @@
 //! Blink the LED (connected to Pin PC 13) on and off with 1 second interval.
 
-#![deny(unsafe_code)]
-#![deny(warnings)]
-#![no_main]
+#![deny(unsafe_code)]  //  Don't allow unsafe code in this file.
+#![deny(warnings)]  //  If the Rust compiler generates a warning, stop the compilation with an error.
+#![no_main]  //  Don't use the Rust standard bootstrap. We will provide our own.
 #![no_std]  //  Don't use the Rust standard library. We are building a binary that can run on its own.
 
 extern crate cortex_m;  //  Low-level functions for ARM Cortex-M3 processor in STM32 Blue Pill.

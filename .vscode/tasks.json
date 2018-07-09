@@ -4,7 +4,7 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "Start OpenOCD (STM32 Blue Pill Rust)",
+            "label": "Connect To STM32 Blue Pill",
             "type": "shell",
             "windows": {
                 "command": "c:\\openocd\\bin\\openocd -f interface/stlink-v2.cfg -f target/stm32f1x.cfg",
