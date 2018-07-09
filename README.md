@@ -10,6 +10,7 @@ Rust for STM32 Blue Pill with Visual Studio Code. Based on
 
 1. Nerijus Arlauskas's Embedded Rust blog: http://nercury.github.io/rust/embedded/experiments/2018/04/29/rust-embedded-01-discovery-vl-flipping-bits.html
 
+-----
 ## Connecting the STM32 Blue Pill to ST-Link V2 USB Debugger
 
 <table>
@@ -41,9 +42,10 @@ Rust for STM32 Blue Pill with Visual Studio Code. Based on
     </tbody>
 </table>
 
+-----
 ## Installation and Usage
 
-### Install prerequisites
+### Install Prerequisites
 
 - For Ubuntu only: Install required packages  (`arm-none-eabi-gdb` is obsolete)
 
@@ -83,9 +85,9 @@ Rust for STM32 Blue Pill with Visual Studio Code. Based on
 
 1. Open a __new__  Windows or Ubuntu command prompt (not Windows Bash) and enter
 
-  ```bash
-  arm-none-eabi-gcc -v
-  ```
+    ```bash
+    arm-none-eabi-gcc -v
+    ```
 
 1. You should see something like `version 5.4.1 20160919 (release)`
 
@@ -130,15 +132,15 @@ Rust for STM32 Blue Pill with Visual Studio Code. Based on
 
 1. Switch to the nightly Rust toolchain (instead of stable or beta):
 
-  ```bash
-  rustup default nightly
-  ```
+    ```bash
+    rustup default nightly
+    ```
 
 1. Install the `rust-std` component `thumbv7m-none-eabi` to cross-compile for ARM Cortex-M3 (the processor used in the Blue Pill):
 
-  ```bash
-  rustup target add thumbv7m-none-eabi
-  ```
+    ```bash
+    rustup target add thumbv7m-none-eabi
+    ```
 
 ### Download `stm32-blue-pill-rust` Source Files
 
@@ -259,7 +261,7 @@ Rust for STM32 Blue Pill with Visual Studio Code. Based on
       Section header string table index: 20
     ```
 
-### Building and Debugging from the Command Line
+### Debugging from the Command Line
 
 1. Launch OpenOCD on a terminal. Scripts are located at `/usr/share/openocd/scripts`
 
@@ -307,16 +309,17 @@ Rust for STM32 Blue Pill with Visual Studio Code. Based on
 
 1. Common GDB commands:
 
-    - step: Execute the current source line, step into functions if present. Same as the step into  command in Visual Studio Code.
+    - `step:` Execute the current source line, step into functions if present. Same as the step into  command in Visual Studio Code.
 
-    - next: Execute the current source line, don't step into functions. Same as the step over command in Visual Studio Code.
+    - `next:` Execute the current source line, don't step into functions. Same as the step over command in Visual Studio Code.
 
-    - where: Show stack trace.
+    - `where:` Show stack trace.
 
-    - where full: Show stack trace with local variables.
+    - `where full:` Show stack trace with local variables.
 
     More commands: https://darkdust.net/files/GDB%20Cheat%20Sheet.pdf
 
+-----
 ## Visual Studio Code Configuration
 
 Customisation of the Visual Studio Code UI was done through the following files:
@@ -353,7 +356,7 @@ Defines the following tasks:
 
 1. This file used to be `.gdbinit,` which could not be autoloaded due to autoloading security in GDB.
 
-1. Set architecture to ARM 32-bit. Needed for gdb-multiarch on Ubuntu.
+1. Set architecture to ARM 32-bit. Needed for `gdb-multiarch` on Ubuntu.
 
 1. Send GDB commands to OpenOCD, which listens on port 3333.  Extend the timeout.
 
@@ -367,16 +370,17 @@ Defines the following tasks:
 
 1. Load the program into device memory.
 
-1. Set breakpoint at the main() function.
+1. Set breakpoint at the `main()` function.
 
-1. Run the program and stop at the main() function.
+1. Run the program and stop at the `main()` function.
 
-1. Remove the breakpoint at the main() function.
+1. Remove the breakpoint at the `main()` function.
 
-1. Step into the first line of the main() function. Else gdb will complain about "entry macros" file missing.
+1. Step into the first line of the `main()` function. Else gdb will complain about `entry macros` file missing.
 
 1. TODO: Write program to flash memory so that it becomes permanent.
 
+-----
 ## References
 
 Windows Setup: https://japaric.github.io/discovery/03-setup/windows.html
@@ -391,60 +395,62 @@ STM32F103C8 Flash Programming: https://www.st.com/content/ccc/resource/technical
 
 STM32F103C8 ARM Cortex M3 Programming: https://www.st.com/content/ccc/resource/technical/document/programming_manual/5b/ca/8d/83/56/7f/40/08/CD00228163.pdf/files/CD00228163.pdf/jcr:content/translations/en.CD00228163.pdf
 
-## How this Rust crate was created
+-----
+## How This Rust Crate Was Created
 
-Install Cargo `clone` and `add` subcommands:
+1. Install Cargo `clone` and `add` subcommands:
 
-```bash
-cargo install cargo-clone
-cargo install cargo-edit
-```
+    ```bash
+    cargo install cargo-clone
+    cargo install cargo-edit
+    ```
 
-Clone the quickstart crate
+1. Clone the quickstart crate
 
-```bash
-cargo clone cortex-m-quickstart && cd $_
-```
+    ```bash
+    cargo clone cortex-m-quickstart && cd $_
+    ```
 
-Change the crate name, author and version in Cargo.toml:
+1. Change the crate name, author and version in Cargo.toml:
 
-```toml
-[package]
-authors = ["Jorge Aparicio <jorge@japaric.io>"]
-name = "demo"
-version = "0.1.0"
-```
+    ```toml
+    [package]
+    authors = ["Jorge Aparicio <jorge@japaric.io>"]
+    name = "demo"
+    version = "0.1.0"
+    ```
 
-Specify the memory layout of the target device.
+1. Specify the memory layout of the target device.
 Since board support crate for stm32f103xx provides this file, we remove both the memory.x and build.rs files.
 
-```bash
-rm memory.x build.rs
-```
+    ```bash
+    rm memory.x build.rs
+    ```
 
-Set a default build target
+1. Set a default build target
 
-```bash
-cat >>.cargo/config <<'EOF'
+    ```bash
+    cat >>.cargo/config <<'EOF'
 
-[build]
-target = "thumbv7m-none-eabi"
-EOF
-```
+    [build]
+    target = "thumbv7m-none-eabi"
+    EOF
+    ```
 
-Depend on a HAL implementation.
+1. Depend on a HAL implementation.
 
-```bash
-cargo add https://github.com/japaric/stm32f103xx
-cargo add https://github.com/japaric/stm32f103xx-hal
-```
+    ```bash
+    cargo add https://github.com/japaric/stm32f103xx
+    cargo add https://github.com/japaric/stm32f103xx-hal
+    ```
 
-Copy the application from the `delay` example from https://github.com/japaric/stm32f103xx-hal
+1. Copy the `delay` sample application from https://github.com/japaric/stm32f103xx-hal into `src\main.rs`
 
-```bash
-rm -r src/* && cp ../stm32f103xx_hal/examples/delay.rs src/main.rs
-```
+    ```bash
+    rm -r src/* && cp ../stm32f103xx_hal/examples/delay.rs src/main.rs
+    ```
 
+-----
 ## License
 
 Licensed under either of
@@ -456,6 +462,7 @@ Licensed under either of
 
 at your option.
 
+-----
 ## Contribution
 
 Unless you explicitly state otherwise, any contribution intentionally submitted
