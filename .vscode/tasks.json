@@ -17,7 +17,7 @@
         {
             "label": "Build (STM32 Blue Pill Rust)",
             "type": "shell",
-            "command": "cargo build -v --release",
+            "command": "cargo build --release",
             "group": {
                 "kind": "build",
                 "isDefault": true
@@ -26,13 +26,13 @@
         {
             "label": "Remove Build (STM32 Blue Pill Rust)",
             "type": "shell",
-            "command": "cargo clean -v",
+            "command": "cargo clean",
             "problemMatcher": []
         },
         {
             "label": "Check Build (STM32 Blue Pill Rust)",
             "type": "shell",
-            "command": "cargo check -v --release",
+            "command": "cargo check --release",
             "problemMatcher": []
         }
     ]
