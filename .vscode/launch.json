@@ -9,7 +9,7 @@
             "request": "launch",
             "cwd": "${workspaceRoot}",
 
-            //  This is the target program to be loaded into the device and debugged.
+            //  This target setting is mandatory but redundant because it's specified in loader.gdb.
             "target": "target/thumbv7m-none-eabi/release/stm32-blue-pill-rust",
 
             //  Start arm-none-eabi-gdb with the loader.gdb script.  Connects to OpenOCD to send commands to ST-Link USB dongle.
@@ -23,8 +23,8 @@
             "valuesFormatting": "disabled",
 
             //  Enable debug output.
-            "printCalls": true,
-            "showDevDebugOutput": true,
+            "printCalls": false,
+            "showDevDebugOutput": false,
         }
     ]
 }

@@ -8,6 +8,28 @@ set architecture arm
 set remotetimeout 100000
 target remote :3333
 
+# Disable all messages.
+set verbose off
+set complaints 0
+set confirm off
+set exec-done-display off
+show exec-done-display
+set trace-commands off
+set debug displaced off 
+set debug expression 0
+set debug frame 0
+set debug infrun 0
+set debug observer 0
+set debug overload 0
+set pagination off
+set print address off
+set print symbol-filename off
+set print symbol off
+set print pretty off
+set print object off
+set debug parser off
+set debug remote 0
+
 # Print demangled symbols by default.
 set print asm-demangle on
 
@@ -20,8 +42,10 @@ monitor sleep 20
 monitor halt
 monitor sleep 20
 
-# Load the program into device memory.
+# Specify the target program to be debugged.  Must be specified here (not the command line) because the VSCode debugger will fail without it.
 file target/thumbv7m-none-eabi/release/stm32-blue-pill-rust
+
+# Load the program into device memory.
 load
 
 # Set breakpoint at the main() function.
@@ -31,10 +55,10 @@ break stm32_blue_pill_rust::main
 continue
 
 # Remove the breakpoint at the main() function.
-#clear stm32_blue_pill_rust::main
+clear stm32_blue_pill_rust::main
 
-####
-#monitor sleep 300
+# Step into the first line of the main() function. Else gdb will complain about "entry macros" file missing.
+step
 
 ##########################################################################
 # Optional Commands

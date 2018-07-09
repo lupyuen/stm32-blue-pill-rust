@@ -50,14 +50,14 @@ fn main() -> ! {
     loop {
         //  Output 3.3V on the LED Pin and show a message in OpenOCD console.
         led.set_high();
-        writeln!(debug_out, "LED is ON").unwrap();
+        writeln!(debug_out, "LED is ON!").unwrap();
 
         //  Wait 1,000 millisec (1 sec).
         delay.delay_ms(1_000_u16);
 
         //  Output 0V on the LED Pin and show a message in OpenOCD console.
         led.set_low();
-        writeln!(debug_out, "LED is OFF").unwrap();
+        writeln!(debug_out, "LED is OFF!").unwrap();
 
         //  Wait 1,000 millisec (1 sec).
         delay.delay_ms(1_000_u16);
