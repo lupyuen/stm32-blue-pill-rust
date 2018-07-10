@@ -458,7 +458,9 @@ Peripheral I/O with Blue Pill HAL: http://blog.japaric.io/brave-new-io/
 
 Embedded Rust Blog: http://blog.japaric.io/
 
-Embedded Rust Book: https://github.com/rust-lang-nursery/embedded-wg/tree/master/books/embedded-rust-book
+Embedded Rust Book (work in progress): https://github.com/rust-lang-nursery/embedded-wg/tree/master/books/embedded-rust-book
+
+Details of `rustup`: https://github.com/rust-lang-nursery/rustup.rs
 
 STM32F103C8 Website: https://www.st.com/en/microcontrollers/stm32f103c8.html
 
