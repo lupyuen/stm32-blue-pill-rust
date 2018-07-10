@@ -1,6 +1,10 @@
 # stm32-blue-pill-rust
 
-Rust for STM32 Blue Pill with Visual Studio Code. Based on
+Rust for STM32 Blue Pill with Visual Studio Code. 
+
+Read the article: https://medium.com/@ly.lee/coding-the-stm32-blue-pill-with-rust-and-visual-studio-code-b21615d8a20
+
+Based on:
 
 1. Jorge Aparicio's Discovery book: https://japaric.github.io/discovery/
 
