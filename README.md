@@ -82,7 +82,7 @@ Based on:
 - For Ubuntu:
 
   ```bash
-  sudo apt install binutils-arm-none-eabi
+  sudo apt install binutils-arm-none-eabi arm-none-eabi-gcc
   ```
 
 ### Check ARM Cross-Compiler Installation
