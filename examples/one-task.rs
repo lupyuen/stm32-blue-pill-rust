@@ -1,22 +1,22 @@
+#![feature(proc_macro_gen)]  //  Added to fix error[E0658]: procedural macros cannot expand to modules (see issue #38356)/54
+// #![feature(panic_implementation)]  //  Added for panic implementation
+// #[macro_use]  //  TODO: Remove
+// use core::panic::PanicInfo;  //  TODO: Remove
+// use cortex_m_rt::ExceptionFrame;  //  TODO: Remove
+
 //! An application with one task
 #![deny(unsafe_code)]
 #![deny(warnings)]
 #![feature(proc_macro)]
 #![no_std]
-#![feature(proc_macro_gen)]  //  Added to fix error[E0658]: procedural macros cannot expand to modules (see issue #38356)/54
-#![feature(panic_implementation)]  //  Added for panic implementation
 
 extern crate cortex_m;
 extern crate cortex_m_rtfm as rtfm;
 extern crate stm32f103xx;
-#[macro_use]  //  TODO: Remove
-extern crate cortex_m_rt;  //  TODO: Remove
 
 use cortex_m::peripheral::syst::SystClkSource;
 use rtfm::{app, Threshold};
 use stm32f103xx::GPIOC;
-use core::panic::PanicInfo;  //  TODO: Remove
-use cortex_m_rt::ExceptionFrame;  //  TODO: Remove
 
 app! {
     device: stm32f103xx,
@@ -100,25 +100,4 @@ fn sys_tick(_t: &mut Threshold, mut r: SYS_TICK::Resources) {
             (*GPIOC::ptr()).bsrr.write(|w| w.br13().reset());
         }
     }
-}
-
-//  TODO: Remove handlers
-#[panic_implementation]
-fn panic_sample(_p: &PanicInfo) -> ! {
-    // panic!("Hard fault: {:#?}", p);
-    loop {}
-}
-
-//  For any hard faults, show a message on the debug console and stop.
-exception!(HardFault, hard_fault);
-
-fn hard_fault(ef: &ExceptionFrame) -> ! {
-    panic!("Hard fault: {:#?}", ef);
-}
-
-//  For any unhandled interrupts, show a message on the debug console and stop.
-exception!(*, default_handler);
-
-fn default_handler(irqn: i16) {
-    panic!("Unhandled exception (IRQn = {})", irqn);
 }
