@@ -1,7 +1,7 @@
 #![feature(proc_macro_gen)]  //  Added to fix error[E0658]: procedural macros cannot expand to modules (see issue #38356)/54
 // #![feature(panic_implementation)]  //  Added for panic implementation
 // #[macro_use]  //  TODO: Remove
-// use core::panic::PanicInfo;  //  TODO: Remove
+use core::panic::PanicInfo;  //  TODO: Remove
 // use cortex_m_rt::ExceptionFrame;  //  TODO: Remove
 
 //! An application with one task
@@ -17,6 +17,12 @@ extern crate stm32f103xx;
 use cortex_m::peripheral::syst::SystClkSource;
 use rtfm::{app, Threshold};
 use stm32f103xx::GPIOC;
+
+#[panic_implementation] // TODO: This function is called on panic.
+#[no_mangle]
+pub fn panic(_info: &PanicInfo) -> ! {
+    loop {}
+}
 
 app! {
     device: stm32f103xx,

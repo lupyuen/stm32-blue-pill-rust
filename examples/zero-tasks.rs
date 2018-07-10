@@ -11,6 +11,12 @@ extern crate stm32f103xx; // the device crate
 // import the procedural macro
 use rtfm::app;
 
+#[panic_implementation] // TODO: This function is called on panic.
+#[no_mangle]
+pub fn panic(_info: &PanicInfo) -> ! {
+    loop {}
+}
+
 // This macro call indicates that this is a RTFM application
 //
 // This macro will expand to a `main` function so you don't need to supply
