@@ -151,7 +151,8 @@ Based on:
 
 ### Download `stm32-blue-pill-rust` Source Files
 
-- Download the source files from GitHub (install `git` if you haven't):
+- Download the source files from GitHub: <br>
+  (You may install git from https://gitforwindows.org)
 
   ```bash
   git clone https://github.com/lupyuen/stm32-blue-pill-rust.git
