@@ -1,10 +1,10 @@
-#![feature(proc_macro_gen)]  //  Added to fix error[E0658]: procedural macros cannot expand to modules (see issue #38356)/54
-// #![feature(panic_implementation)]  //  Added for panic implementation
-// #[macro_use]  //  TODO: Remove
-use core::panic::PanicInfo;  //  TODO: Remove
-// use cortex_m_rt::ExceptionFrame;  //  TODO: Remove
-
 //! An application with one task
+
+#![feature(proc_macro_gen)]  //  TODO: Added to fix error[E0658]: procedural macros cannot expand to modules (see issue #38356)/54.
+#![feature(panic_implementation)]  //  TODO: Added for panic implementation.
+#![feature(lang_items)]  //  TODO: Fix `start` lang_item error.
+// #[macro_use]  //  TODO: Remove
+
 #![deny(unsafe_code)]
 #![deny(warnings)]
 #![feature(proc_macro)]
@@ -13,6 +13,9 @@ use core::panic::PanicInfo;  //  TODO: Remove
 extern crate cortex_m;
 extern crate cortex_m_rtfm as rtfm;
 extern crate stm32f103xx;
+
+use core::panic::PanicInfo;  //  TODO: Remove
+// use cortex_m_rt::ExceptionFrame;  //  TODO: Remove
 
 use cortex_m::peripheral::syst::SystClkSource;
 use rtfm::{app, Threshold};
