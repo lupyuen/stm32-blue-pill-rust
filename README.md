@@ -161,23 +161,24 @@ Based on:
 
 ### Install Visual Studio Code
 
-1. Install Visual Studio Code from https://code.visualstudio.com/download
+1. Install Visual Studio Code from <br>
+  https://code.visualstudio.com/download
 
 1. Launch Visual Studio Code and install the following extensions (just click the links below followed by the `Install` button and `Open Visual Studio Code`):
 
-    - Better TOML (bungcip)
+    - Better TOML (bungcip) <br>
       https://marketplace.visualstudio.com/items?itemName=bungcip.better-toml
 
-    - C/C++ (Microsoft)
+    - C/C++ (Microsoft) <br>
       https://marketplace.visualstudio.com/items?itemName=ms-vscode.cpptools
 
-    - Native Debug (WebFreak)
+    - Native Debug (WebFreak) <br>
       https://marketplace.visualstudio.com/items?itemName=webfreak.debug
 
-    - Rust (kalitaalexey)
+    - Rust (kalitaalexey) <br>
       https://marketplace.visualstudio.com/items?itemName=kalitaalexey.vscode-rust
 
-    - Rust (rls) (rust-lang)
+    - Rust (rls) (rust-lang) <br>
       https://marketplace.visualstudio.com/items?itemName=rust-lang.rust
 
 1. In Visual Studio Code, click `Install` when prompted to install the above extensions
