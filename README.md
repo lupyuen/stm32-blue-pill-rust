@@ -77,7 +77,7 @@ Based on:
     (The `7 2018-q2-update` part may be different for your installation)
 
   1. Copy the file `arm-none-eabi-ar.exe` to `ar.exe` <br>
-    (This `ar.exe` workaround is temporary until we find a fix for the Windows Rust build)
+    _This `ar.exe` workaround is temporary until we find a fix for the Windows Rust build_
 
 - For Ubuntu:
 
@@ -137,8 +137,11 @@ Based on:
 1. Install `rustup` (the Rust toolchain installer) from <br>
     https://rustup.rs/
 
-1. Select the default option when prompted. <br>
-    For Ubuntu only: Log out and log in again to update the PATH
+1. If you see a message about `Windows Defender SmartScreen`, 
+    click `More Info` and `Run Anyway`.
+
+1. Select the default installation option when prompted. <br>
+    For Ubuntu only: Log out and log in again to update the `PATH`
 
 1. Switch to the nightly Rust toolchain (instead of stable or beta). Open a __new__  Windows or Ubuntu command prompt (not Windows Bash) and enter:
 
