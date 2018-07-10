@@ -54,7 +54,7 @@ Based on:
 - For Ubuntu only: Install required packages  (`arm-none-eabi-gdb` is obsolete)
 
   ```bash
-  sudo apt install pkg-config cmake libssl-dev zlib1g-dev gdb-multiarch
+  sudo apt install pkg-config cmake libssl-dev zlib1g-dev gdb-multiarch curl
   
   sudo ln -s /usr/bin/gdb-multiarch /usr/bin/arm-none-eabi-gdb
   ```
@@ -99,7 +99,7 @@ Based on:
 
 1. If you see an error, update your PATH environment variable so that it  includes the folder for the ARM ".exe" files.
 
-### Install OpenOCD For Debugging The Blue Pill
+### Install OpenOCD For Debugging Blue Pill
 
 - For Windows:
 
@@ -115,7 +115,7 @@ Based on:
   sudo apt install openocd
   ```
 
-### Install ST-Link USB Driver
+### For Windows only: Install ST-Link USB Driver
 
 1. For Windows only: Download the ST-Link USB driver from the ST-Link Driver Website (email registration required): <br>
   http://www.st.com/en/embedded-software/stsw-link009.html
@@ -124,13 +124,15 @@ Based on:
 
 1. Unzip the ST-Link download. Double-click the `dpinst_amd64.exe` installer.
 
-### Install `rustup`
+### For Windows only: Install Build Tools
 
 1. For Windows only: Install `Build Tools for Visual Studio 2017` (needed by `rustup`) from <br>
     https://aka.ms/buildtools
 
 1. Under "Workloads", select `Visual C++ Build Tools`. <br>
     _Warning: The download is 1.1 GB and you need 4.8 GB of free disk space._
+
+### Install `rustup`
 
 1. Install `rustup` (the Rust toolchain installer) from <br>
     https://rustup.rs/
