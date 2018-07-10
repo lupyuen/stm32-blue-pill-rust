@@ -1,0 +1,58 @@
+# This file declares the dependencies for the Rust program.
+[package]
+name = "stm32-blue-pill-rust"
+version = "0.3.2"
+authors = ["Lee Lup Yuen <luppy@appkaki.com>"]
+description = "A sample Rust application for STM32 Blue Pill microcontrollers"
+keywords = ["arm", "cortex-m", "stm32", "bluepill"]
+categories = ["embedded", "no-std"]
+license = "MIT OR Apache-2.0"
+repository = "https://github.com/lupyuen/stm32-blue-pill-rust"
+
+# To minimize the executable size, we should always compile with --release flag. 
+[profile.release]
+# To optimize the usage of many crates, we should link with Link Time Optimization (LTO). 
+lto = true
+codegen-units = 1
+# Enable debugging in release mode.
+debug = true
+
+####[dependencies]
+####stm32f103xx = { git = "https://github.com/japaric/stm32f103xx" }
+####stm32f103xx-hal = { git = "https://github.com/japaric/stm32f103xx-hal" }
+
+####[dependencies.cortex-m]
+####version = "0.5.0"
+
+####[dependencies.cortex-m-rt]
+####version = "0.5.0"
+
+####[dependencies.cortex-m-semihosting]
+####version = "0.3.0"
+
+####[dependencies.panic-semihosting]
+####version = "0.3.0"
+
+# Dependencies for the examples.
+[dev-dependencies]
+# rtfm-core = "0.2.0"
+# cortex-m-rtfm = "0.3.2"
+cortex-m-rtfm = { git = "https://github.com/japaric/cortex-m-rtfm", branch = "auto", rev = "14b18111821d8e1929df149a8782e9b7c761b1ff" }
+# Old:
+# cortex-m = "0.4.0"
+# New:
+cortex-m = "0.5.2"
+
+[dev-dependencies.cortex-m-rt]
+# Old:
+# version = "0.3.9"
+# features = ["abort-on-panic"]
+# New:
+version = "0.5.1"
+
+[dev-dependencies.stm32f103xx]
+features = ["rt"]
+# Old:
+# version = "0.8.0"
+# New:
+version = "0.10.0"
