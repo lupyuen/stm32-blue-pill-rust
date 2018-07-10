@@ -43,3 +43,10 @@ version = "0.3.0"
 
 [dependencies.panic-semihosting]
 version = "0.3.0"
+
+# Dependencies for the examples.
+[dev-dependencies]
+# rtfm-core = "0.2.0"
+# cortex-m-rtfm = "0.3.2"
+cortex-m-rt = "0.5.0"
+cortex-m-rtfm = { git = "https://github.com/japaric/cortex-m-rtfm", branch = "auto", rev = "14b18111821d8e1929df149a8782e9b7c761b1ff" }

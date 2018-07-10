@@ -34,6 +34,12 @@
             "type": "shell",
             "command": "cargo check --release",
             "problemMatcher": []
+        },
+        {
+            "label": "Build Example (STM32 Blue Pill Rust)",
+            "type": "shell",
+            "command": "cargo build -vv --release --example one-task",
+            "problemMatcher": []
         }
     ]
 }
