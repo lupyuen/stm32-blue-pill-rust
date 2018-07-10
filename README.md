@@ -452,13 +452,15 @@ Defines the following tasks:
 -----
 ## References
 
-Windows Setup for Rust: https://japaric.github.io/discovery/03-setup/windows.html
+Windows Setup for Embedded Rust: https://japaric.github.io/discovery/03-setup/windows.html
 
-Peripheral I/O with Blue Pill HAL: http://blog.japaric.io/brave-new-io/
+Peripheral I/O with Embedded HAL: http://blog.japaric.io/brave-new-io/
 
 Embedded Rust Blog: http://blog.japaric.io/
 
 Embedded Rust Book (work in progress): https://github.com/rust-lang-nursery/embedded-wg/tree/master/books/embedded-rust-book
+
+Awesome Embedded Rust (covers other hardware platforms): https://github.com/rust-embedded/awesome-embedded-rust
 
 Details of `rustup`: https://github.com/rust-lang-nursery/rustup.rs
 
