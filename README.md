@@ -54,7 +54,7 @@ Based on:
 - For Ubuntu only: Install required packages  (`arm-none-eabi-gdb` is obsolete)
 
   ```bash
-  sudo apt install pkg-config cmake libssl-dev zlib1g-dev gdb-multiarch curl
+  sudo apt install pkg-config cmake libssl-dev zlib1g-dev gdb-multiarch curl git
   
   sudo ln -s /usr/bin/gdb-multiarch /usr/bin/arm-none-eabi-gdb
   ```
@@ -137,7 +137,8 @@ Based on:
 1. Install `rustup` (the Rust toolchain installer) from <br>
     https://rustup.rs/
 
-1. Select the default option when prompted.
+1. Select the default option when prompted. <br>
+    For Ubuntu only: Log out and log in again to update the PATH
 
 1. Switch to the nightly Rust toolchain (instead of stable or beta). Open a __new__  Windows or Ubuntu command prompt (not Windows Bash) and enter:
 
