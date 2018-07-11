@@ -18,10 +18,6 @@ codegen-units = 1
 debug = true
 
 # Dependencies for the main program: src/main.rs
-####[dependencies]
-####stm32f103xx = { git = "https://github.com/japaric/stm32f103xx" }
-####stm32f103xx-hal = { git = "https://github.com/japaric/stm32f103xx-hal" }
-
 [dependencies.cortex-m]
 version = "0.5.0"
 
@@ -29,14 +25,24 @@ version = "0.5.0"
 [dependencies.cortex-m-rt]
 version = "0.5.1"
 
-####[dependencies.cortex-m-semihosting]
-####version = "0.3.0"
+[dependencies.cortex-m-semihosting]
+version = "0.3.0"
 
-####[dependencies.panic-semihosting]
-####version = "0.3.0"
+[dependencies.panic-semihosting]
+version = "0.3.0"
+
+[dependencies.stm32f103xx]
+git = "https://github.com/japaric/stm32f103xx"
+version = "0.10.0"
+
+[dependencies.stm32f103xx-hal]
+git = "https://github.com/japaric/stm32f103xx-hal"
+version = "0.1.0"
 
 # Dependencies for the RTFM examples: examples/*
 [dev-dependencies]
+# For RTFM: Take the latest revision of the "tq" branch, which has fixed the macro issue.
+# TODO: Switch to main branch.
 cortex-m-rtfm = { git = "https://github.com/japaric/cortex-m-rtfm", rev = "7b598c0749aa5390cfefc8e138c05fafa7599dc6" }
 panic-semihosting = "0.3.0"
 typenum = "1.10.0"
@@ -45,10 +51,6 @@ typenum = "1.10.0"
 # panic-itm = "0.1.1"
 # heapless = "0.3.6"
 # heapless = { git = "https://github.com/japaric/heapless", branch = "object-pool" }
-
-[dev-dependencies.stm32f103xx]
-features = ["rt"]
-version = "0.10.0"
 
 [[example]]
 name = "schedule-after"
