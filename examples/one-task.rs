@@ -2,16 +2,19 @@
 
 #![feature(proc_macro_gen)]  //  TODO: Added to fix error[E0658]: procedural macros cannot expand to modules (see issue #38356)/54.
 #![feature(panic_implementation)]  //  TODO: Added for panic implementation.
-#![feature(lang_items)]  //  TODO: Fix `start` lang_item error.
-// #[macro_use]  //  TODO: Remove
+#![no_main]  //  TODO: Fix `start` lang_item error.
 
 #![deny(unsafe_code)]
-#![deny(warnings)]
+//// TODO: #![deny(warnings)]
 #![feature(proc_macro)]
 #![no_std]
 
+#[macro_use]  //  TODO: Remove
 extern crate cortex_m;
+
+#[macro_use]  //  TODO: Remove
 extern crate cortex_m_rtfm as rtfm;
+
 extern crate stm32f103xx;
 
 use core::panic::PanicInfo;  //  TODO: Remove
@@ -59,6 +62,7 @@ app! {
 }
 
 fn init(mut p: init::Peripherals, r: init::Resources) {
+//// fn init(mut p: init::Peripherals) {
     // `init` can modify all the `resources` declared in `app!`
     r.ON;
 
