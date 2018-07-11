@@ -6,7 +6,7 @@
     "tasks": [
         {
             //  Connect to the Blue Pill via OpenOCD, to be used for debugging.
-            "label": "🔗Connect To STM32 Blue Pill",
+            "label": "🔗 Connect To STM32 Blue Pill",
             "type": "shell",
             "windows": {
                 "command": "c:\\openocd\\bin\\openocd -f interface/stlink-v2.cfg -f target/stm32f1x.cfg",
@@ -19,7 +19,7 @@
         {
             //  Build the Rust main program. This is the default task for "Run Build Task".
             //  The compiled main program will be located at "stm32-blue-pill-rust/target/thumbv7m-none-eabi/release/stm32-blue-pill-rust"
-            "label": "🔨Build (STM32 Blue Pill Rust)",
+            "label": "🔨 Build (STM32 Blue Pill Rust)",
             "type": "shell",
             "command": "cargo build --release",
             "group": {
@@ -29,14 +29,14 @@
         },
         {
             //  Remove all compiled files, including compiled examples.
-            "label": "🗑️Remove Build (STM32 Blue Pill Rust)",
+            "label": "🗑️ Remove Build (STM32 Blue Pill Rust)",
             "type": "shell",
             "command": "cargo clean",
             "problemMatcher": []
         },
         {
             //  Check that the main program and its dependencies are valid.
-            "label": "✔️Check Build (STM32 Blue Pill Rust)",
+            "label": "✔️ Check Build (STM32 Blue Pill Rust)",
             "type": "shell",
             "command": "cargo check --release",
             "problemMatcher": []
@@ -44,21 +44,21 @@
         {
             //  Build the Rust example code. The active window must be the example source file.
             //  The compiled example program will be located at "stm32-blue-pill-rust/target/thumbv7m-none-eabi/release/examples/<name>"
-            "label": "🛠️Build Example (STM32 Blue Pill Rust)",
+            "label": "🛠️ Build Example (STM32 Blue Pill Rust)",
             "type": "shell",
             "command": "cargo build -vv --release --example ${fileBasenameNoExtension}",
             "problemMatcher": []
         },
         {
             //  Check that the example code and dependencies are valid. The active window must be the example source file.
-            "label": "✔️Check Example (STM32 Blue Pill Rust)",
+            "label": "✔️ Check Example (STM32 Blue Pill Rust)",
             "type": "shell",
             "command": "cargo check -vv --release --example ${fileBasenameNoExtension}",
             "problemMatcher": []
         },
         {
             //  Expand the Rust macros for the example code but do not build. Used for troubleshooting the macros. The active window must be the example source file.
-            "label": "🗳️Expand Example (STM32 Blue Pill Rust)",
+            "label": "🗳️ Expand Example (STM32 Blue Pill Rust)",
             "type": "shell",
             "command": "cargo rustc -vv --release --example ${fileBasenameNoExtension} --profile=check -- -Zunstable-options --pretty=expanded",
             "problemMatcher": []
