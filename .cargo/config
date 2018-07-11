@@ -7,25 +7,29 @@ runner = 'arm-none-eabi-gdb'
 # linker = "arm-none-eabi-ld"
 # ar = "arm-none-eabi-ar"
 rustflags = [
+  # Don't link with default start files.
   "-C", "link-arg=-nostartfiles",
 
   # Select ar linker: (default)
   "-C", "link-arg=-Wl,-Tlink.x",
 
-  # Select GNU linker:
+  # OR Select GNU linker:
   # "-C", "linker=arm-none-eabi-ld",
   # "-C", "ar=arm-none-eabi-ar",
   # "-C", "link-arg=-Tlink.x",
   # "-Z", "linker-flavor=ld",
   # "-Z", "thinlto=no",
 
-  # Select rustc LLD linker (a)
+  # OR Select rustc LLD linker (a)
   # "-C", "link-arg=-Tlink.x",
   # "-C", "linker=lld",
   # "-Z", "linker-flavor=ld.lld",
 
   # (a) you also need to comment out the other two `link-arg` lines. But note that as of v0.6.0 LLD
   # has a bug where it mislinks FFI calls and they up crashing the program at runtime[build]
+
+  # Show the expansion of macros.
+  # "-Z", "unstable-options", "--pretty=expanded",
 ]
 
 [build]

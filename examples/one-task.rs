@@ -5,14 +5,15 @@
 #![no_main]  //  TODO: Fix `start` lang_item error.
 
 #![deny(unsafe_code)]
-//// TODO: #![deny(warnings)]
+//// TODO: 
+#![deny(warnings)]
 #![feature(proc_macro)]
 #![no_std]
 
-#[macro_use]  //  TODO: Remove
+// #[macro_use]  //  TODO: Remove
 extern crate cortex_m;
 
-#[macro_use]  //  TODO: Remove
+// #[macro_use]  //  TODO: Remove
 extern crate cortex_m_rtfm as rtfm;
 
 extern crate stm32f103xx;

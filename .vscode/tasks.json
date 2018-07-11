@@ -40,6 +40,18 @@
             "type": "shell",
             "command": "cargo build -vv --release --example one-task",
             "problemMatcher": []
-        }
+        },
+        {
+            "label": "Check Example (STM32 Blue Pill Rust)",
+            "type": "shell",
+            "command": "cargo check -vv --release --example one-task",
+            "problemMatcher": []
+        },
+        {
+            "label": "Expand Example (STM32 Blue Pill Rust)",
+            "type": "shell",
+            "command": "cargo rustc -vv --release --example one-task --profile=check -- -Zunstable-options --pretty=expanded",
+            "problemMatcher": []
+        },
     ]
 }
