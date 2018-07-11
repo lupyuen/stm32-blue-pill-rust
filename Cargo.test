@@ -52,6 +52,7 @@ typenum = "1.10.0"
 # heapless = "0.3.6"
 # heapless = { git = "https://github.com/japaric/heapless", branch = "object-pool" }
 
+# Here are all the example programs and the features they need.
 [[example]]
 name = "schedule-after"
 required-features = ["timer-queue"]
