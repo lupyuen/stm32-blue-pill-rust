@@ -1,35 +1,23 @@
 //! An application with one task
-
-#![feature(proc_macro_gen)]  //  TODO: Added to fix error[E0658]: procedural macros cannot expand to modules (see issue #38356)/54.
-#![feature(panic_implementation)]  //  TODO: Added for panic implementation.
-#![no_main]  //  TODO: Fix `start` lang_item error.
-
 #![deny(unsafe_code)]
-//// TODO: 
 #![deny(warnings)]
 #![feature(proc_macro)]
+#![feature(proc_macro_gen)]
+#![no_main]
 #![no_std]
 
-// #[macro_use]  //  TODO: Remove
+#[macro_use]
 extern crate cortex_m;
-
-// #[macro_use]  //  TODO: Remove
+#[macro_use]
+extern crate cortex_m_rt;
 extern crate cortex_m_rtfm as rtfm;
-
+extern crate panic_semihosting;
 extern crate stm32f103xx;
 
-use core::panic::PanicInfo;  //  TODO: Remove
-// use cortex_m_rt::ExceptionFrame;  //  TODO: Remove
-
-use cortex_m::peripheral::syst::SystClkSource;
-use rtfm::{app, Threshold};
 use stm32f103xx::GPIOC;
-
-#[panic_implementation] // TODO: This function is called on panic.
-#[no_mangle]
-pub fn panic(_info: &PanicInfo) -> ! {
-    loop {}
-}
+use cortex_m::peripheral::syst::SystClkSource;
+use cortex_m_rt::ExceptionFrame;
+use rtfm::{app, Threshold};
 
 app! {
     device: stm32f103xx,
@@ -113,4 +101,20 @@ fn sys_tick(_t: &mut Threshold, mut r: SYS_TICK::Resources) {
             (*GPIOC::ptr()).bsrr.write(|w| w.br13().reset());
         }
     }
+}
+
+//  Define the exception and interrupt handlers.
+
+exception!(HardFault, hard_fault);
+
+#[inline(always)]
+fn hard_fault(ef: &ExceptionFrame) -> ! {
+    panic!("HardFault at {:#?}", ef);
+}
+
+exception!(*, default_handler);
+
+#[inline(always)]
+fn default_handler(irqn: i16) {
+    panic!("Unhandled exception (IRQn = {})", irqn);
 }

@@ -53,6 +53,38 @@ typenum = "1.10.0"
 # heapless = { git = "https://github.com/japaric/heapless", branch = "object-pool" }
 
 # Here are all the example programs and the features they need.
+
+# Single task example
+[[example]]
+name = "one-task"
+
+[[example]]
+name = "custom-type"
+
+[[example]]
+name = "full-syntax"
+
+[[example]]
+name = "generics"
+
+[[example]]
+name = "late-resources"
+
+[[example]]
+name = "nested"
+
+[[example]]
+name = "preemption"
+
+[[example]]
+name = "safe-static-mut-ref"
+
+[[example]]
+name = "two-tasks"
+
+[[example]]
+name = "zero-tasks"
+
 [[example]]
 name = "schedule-after"
 required-features = ["timer-queue"]

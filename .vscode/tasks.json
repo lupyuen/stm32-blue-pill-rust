@@ -18,6 +18,7 @@
         },
         {
             //  Build the Rust main program. This is the default task for "Run Build Task".
+            //  The compiled main program will be located at "stm32-blue-pill-rust/target/thumbv7m-none-eabi/release/stm32-blue-pill-rust"
             "label": "Build (STM32 Blue Pill Rust)",
             "type": "shell",
             "command": "cargo build --release",
@@ -27,7 +28,7 @@
             }
         },
         {
-            //  Remove any compiled files.
+            //  Remove all compiled files, including compiled examples.
             "label": "Remove Build (STM32 Blue Pill Rust)",
             "type": "shell",
             "command": "cargo clean",
@@ -41,24 +42,25 @@
             "problemMatcher": []
         },
         {
-            //  Build the Rust example code.
+            //  Build the Rust example code. The active window must be the example source file.
+            //  The compiled example program will be located at "stm32-blue-pill-rust/target/thumbv7m-none-eabi/release/examples/<name>"
             "label": "Build Example (STM32 Blue Pill Rust)",
             "type": "shell",
-            "command": "cargo build -vv --release --example minimal",
+            "command": "cargo build -vv --release --example ${fileBasenameNoExtension}",
             "problemMatcher": []
         },
         {
-            //  Check that the example code and dependencies are valid.
+            //  Check that the example code and dependencies are valid. The active window must be the example source file.
             "label": "Check Example (STM32 Blue Pill Rust)",
             "type": "shell",
-            "command": "cargo check -vv --release --example minimal",
+            "command": "cargo check -vv --release --example ${fileBasenameNoExtension}",
             "problemMatcher": []
         },
         {
-            //  Expand the Rust macros but do not build. Used for troubleshooting the macros.
+            //  Expand the Rust macros for the example code but do not build. Used for troubleshooting the macros. The active window must be the example source file.
             "label": "Expand Example (STM32 Blue Pill Rust)",
             "type": "shell",
-            "command": "cargo rustc -vv --release --example minimal --profile=check -- -Zunstable-options --pretty=expanded",
+            "command": "cargo rustc -vv --release --example ${fileBasenameNoExtension} --profile=check -- -Zunstable-options --pretty=expanded",
             "problemMatcher": []
         },
     ]
