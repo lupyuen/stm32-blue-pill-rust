@@ -1,9 +1,11 @@
 {
+    // Defines the Visual Studio Code Tasks for building and debugging.
     // See https://go.microsoft.com/fwlink/?LinkId=733558
     // for the documentation about the tasks.json format
     "version": "2.0.0",
     "tasks": [
         {
+            //  Connect to the Blue Pill via OpenOCD, to be used for debugging.
             "label": "Connect To STM32 Blue Pill",
             "type": "shell",
             "windows": {
@@ -15,6 +17,7 @@
             "problemMatcher": []
         },
         {
+            //  Build the Rust main program. This is the default task for "Run Build Task".
             "label": "Build (STM32 Blue Pill Rust)",
             "type": "shell",
             "command": "cargo build --release",
@@ -24,33 +27,38 @@
             }
         },
         {
+            //  Remove any compiled files.
             "label": "Remove Build (STM32 Blue Pill Rust)",
             "type": "shell",
             "command": "cargo clean",
             "problemMatcher": []
         },
         {
+            //  Check that the main program and its dependencies are valid.
             "label": "Check Build (STM32 Blue Pill Rust)",
             "type": "shell",
             "command": "cargo check --release",
             "problemMatcher": []
         },
         {
+            //  Build the Rust example code.
             "label": "Build Example (STM32 Blue Pill Rust)",
             "type": "shell",
-            "command": "cargo build -vv --release --example one-task",
+            "command": "cargo build -vv --release --example minimal",
             "problemMatcher": []
         },
         {
+            //  Check that the example code and dependencies are valid.
             "label": "Check Example (STM32 Blue Pill Rust)",
             "type": "shell",
-            "command": "cargo check -vv --release --example one-task",
+            "command": "cargo check -vv --release --example minimal",
             "problemMatcher": []
         },
         {
+            //  Expand the Rust macros but do not build. Used for troubleshooting the macros.
             "label": "Expand Example (STM32 Blue Pill Rust)",
             "type": "shell",
-            "command": "cargo rustc -vv --release --example one-task --profile=check -- -Zunstable-options --pretty=expanded",
+            "command": "cargo rustc -vv --release --example minimal --profile=check -- -Zunstable-options --pretty=expanded",
             "problemMatcher": []
         },
     ]
