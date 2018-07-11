@@ -54,37 +54,6 @@ typenum = "1.10.0"
 
 # Here are all the example programs and the features they need.
 
-# Single task example
-[[example]]
-name = "one-task"
-
-[[example]]
-name = "custom-type"
-
-[[example]]
-name = "full-syntax"
-
-[[example]]
-name = "generics"
-
-[[example]]
-name = "late-resources"
-
-[[example]]
-name = "nested"
-
-[[example]]
-name = "preemption"
-
-[[example]]
-name = "safe-static-mut-ref"
-
-[[example]]
-name = "two-tasks"
-
-[[example]]
-name = "zero-tasks"
-
 [[example]]
 name = "schedule-after"
 required-features = ["timer-queue"]
@@ -128,3 +97,36 @@ required-features = ["timer-queue"]
 [[example]]
 name = "user-struct"
 required-features = ["timer-queue"]
+
+# Old examples to be migrated.
+
+# Single task example
+[[example]]
+name = "old-one-task"
+
+[[example]]
+name = "old-custom-type"
+
+[[example]]
+name = "old-full-syntax"
+
+[[example]]
+name = "old-generics"
+
+[[example]]
+name = "old-late-resources"
+
+[[example]]
+name = "old-nested"
+
+[[example]]
+name = "old-preemption"
+
+[[example]]
+name = "old-safe-static-mut-ref"
+
+[[example]]
+name = "old-two-tasks"
+
+[[example]]
+name = "old-zero-tasks"
