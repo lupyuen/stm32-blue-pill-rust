@@ -44,9 +44,15 @@
         {
             //  Build the Rust example code. The active window must be the example source file.
             //  The compiled example program will be located at "stm32-blue-pill-rust/target/thumbv7m-none-eabi/release/examples/<name>"
+            //  Cargo.toml is copied into Cargo.test.
             "label": "🛠️ Build Example (STM32 Blue Pill Rust)",
             "type": "shell",
-            "command": "cargo build -vv --release --example ${fileBasenameNoExtension}",
+            "windows": {
+                "command": "copy Cargo.toml Cargo.test; cargo build -vv --release --example ${fileBasenameNoExtension}",
+            },
+            "linux": {
+                "command": "cp Cargo.toml Cargo.test; cargo build -vv --release --example ${fileBasenameNoExtension}",
+            },
             "problemMatcher": []
         },
         {

@@ -54,6 +54,10 @@ typenum = "1.10.0"
 
 # Here are all the example programs and the features they need.
 
+# Blink the LED.
+[[example]]
+name = "blinky"
+
 [[example]]
 name = "schedule-after"
 required-features = ["timer-queue"]
