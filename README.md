@@ -460,6 +460,8 @@ Embedded Rust Blog: http://blog.japaric.io/
 
 Embedded Rust Book (work in progress): https://github.com/rust-lang-nursery/embedded-wg/tree/master/books/embedded-rust-book
 
+Rust RTFM Docs and Book (work in progress): https://github.com/japaric/cortex-m-rtfm/tree/gh-pages
+
 Awesome Embedded Rust (covers other hardware platforms): https://github.com/rust-embedded/awesome-embedded-rust
 
 Details of `rustup`: https://github.com/rust-lang-nursery/rustup.rs
