@@ -48,10 +48,10 @@
             "label": "🛠️ Build Example (STM32 Blue Pill Rust)",
             "type": "shell",
             "windows": {
-                "command": "copy Cargo.toml Cargo.test; cargo build -vv --release --example ${fileBasenameNoExtension}",
+                "command": "copy Cargo.toml Cargo.test; cargo build --release --example ${fileBasenameNoExtension}",
             },
             "linux": {
-                "command": "cp Cargo.toml Cargo.test; cargo build -vv --release --example ${fileBasenameNoExtension}",
+                "command": "cp Cargo.toml Cargo.test; cargo build --release --example ${fileBasenameNoExtension}",
             },
             "problemMatcher": []
         },
